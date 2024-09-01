@@ -6,7 +6,10 @@
   "scripts": {
     "build": "npx tsc",
     "start": "node dist/index.js",
-    "dev": "nodemon src/index.ts"
+    "dev": "nodemon src/index.ts",
+    "db:generate": "npx drizzle-kit generate",
+    "db:migrate": "npx drizzle-kit migrate",
+    "db:seed": "node --env-file=.env -r esbuild-register src/libs/db/seed.ts"
   },
   "keywords": [],
   "author": "",
@@ -17,6 +20,7 @@
     "pg": "^8.12.0"
   },
   "devDependencies": {
+    "@faker-js/faker": "^8.4.1",
     "@types/express": "^4.17.21",
     "@types/node": "^22.5.2",
     "@types/pg": "^8.11.8",

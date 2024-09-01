@@ -15,6 +15,20 @@
       "when": 1725206342754,
       "tag": "0001_clammy_nextwave",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1725207716463,
+      "tag": "0002_amusing_shinko_yamashiro",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1725277990174,
+      "tag": "0003_mature_next_avengers",
+      "breakpoints": true
     }
   ]
 }

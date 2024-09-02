@@ -41,4 +41,15 @@ router.patch('/:id', async (req: Request, res: Response) => {
   return res.json(updatedTodo)
 })
 
+router.delete('/:id', async (req: Request, res: Response) => {
+  const { id } = req.params
+
+  const todoRes = await db
+    .select()
+    .from(todos)
+    .where(eq(todos.id, +id))
+
+  return res.json(todoRes[0])
+})
+
 export default router

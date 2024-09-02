@@ -3,6 +3,8 @@ import { todos } from './schema'
 import { drizzle } from 'drizzle-orm/node-postgres'
 import { Pool } from 'pg'
 
+import 'dotenv/config'
+
 const pool = new Pool({
   host: process.env.DB_HOST,
   port: +process.env.DB_PORT!,

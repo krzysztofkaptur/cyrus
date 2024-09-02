@@ -9,12 +9,13 @@
     "dev": "nodemon src/index.ts",
     "db:generate": "npx drizzle-kit generate",
     "db:migrate": "npx drizzle-kit migrate",
-    "db:seed": "node --env-file=.env -r esbuild-register src/libs/db/seed.ts"
+    "db:seed": "node -r esbuild-register src/libs/db/seed.ts"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "dotenv": "^16.4.5",
     "drizzle-orm": "^0.33.0",
     "express": "^4.19.2",
     "pg": "^8.12.0"

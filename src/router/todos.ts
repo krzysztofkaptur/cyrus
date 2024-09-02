@@ -19,7 +19,26 @@ router.get('/:id', async (req: Request, res: Response) => {
     .from(todos)
     .where(eq(todos.id, +id))
 
-  return res.json(todoRes)
+  return res.json(todoRes[0])
+})
+
+router.patch('/:id', async (req: Request, res: Response) => {
+  const { id } = req.params
+  const { name, description, completed } = req.body
+
+  const todoRes = await db
+    .select()
+    .from(todos)
+    .where(eq(todos.id, +id))
+
+  const updatedTodo = {
+    ...todoRes[0],
+    name: name ?? todoRes[0].name,
+    description: description ?? todoRes[0].description,
+    completed: completed ?? todoRes[0].completed
+  }
+
+  return res.json(updatedTodo)
 })
 
 export default router

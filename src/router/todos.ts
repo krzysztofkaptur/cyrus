@@ -1,8 +1,10 @@
 import { Request, Response, Router } from 'express'
-import { eq } from 'drizzle-orm'
+import { eq, desc, InferSelectModel } from 'drizzle-orm'
 
 import db from '../libs/db/config'
 import { todos } from '../libs/db/schema'
+
+import { formatDate } from '../libs/utils'
 
 const router = Router()
 
@@ -50,6 +52,28 @@ router.delete('/:id', async (req: Request, res: Response) => {
     .where(eq(todos.id, +id))
 
   return res.json(todoRes[0])
+})
+
+type Todo = InferSelectModel<typeof todos>
+
+router.post('/', async (req: Request, res: Response) => {
+  const { name, description } = req.body
+  const lastTodo = await db
+    .select()
+    .from(todos)
+    .orderBy(desc(todos.id))
+    .limit(1)
+
+  const newTodo: Todo = {
+    id: lastTodo[0].id,
+    name,
+    description,
+    completed: false,
+    created_at: formatDate(new Date()),
+    updated_at: formatDate(new Date())
+  }
+
+  return res.json(newTodo)
 })
 
 export default router

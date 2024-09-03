@@ -8,8 +8,12 @@ import { formatDate } from '../libs/utils'
 
 const router = Router()
 
-router.get('/', async (_req: Request, res: Response) => {
-  const todosRes = await db.select().from(todos)
+router.get('/', async (req: Request, res: Response) => {
+  const { limit } = req.query
+  const todosRes = await db
+    .select()
+    .from(todos)
+    .limit(+limit! || -1)
 
   return res.json(todosRes)
 })

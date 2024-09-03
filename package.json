@@ -6,7 +6,7 @@
   "scripts": {
     "build": "npx tsc",
     "start": "node dist/index.js",
-    "dev": "concurrently \"nodemon src/index.ts\" \"npm run tailwind:css\"",
+    "dev": "nodemon src/index.ts",
     "db:generate": "npx drizzle-kit generate",
     "db:migrate": "npx drizzle-kit migrate",
     "db:seed": "node -r esbuild-register src/libs/db/seed.ts",

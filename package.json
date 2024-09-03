@@ -6,25 +6,32 @@
   "scripts": {
     "build": "npx tsc",
     "start": "node dist/index.js",
-    "dev": "nodemon src/index.ts",
+    "dev": "concurrently \"nodemon src/index.ts\" \"npm run tailwind:css\"",
     "db:generate": "npx drizzle-kit generate",
     "db:migrate": "npx drizzle-kit migrate",
-    "db:seed": "node -r esbuild-register src/libs/db/seed.ts"
+    "db:seed": "node -r esbuild-register src/libs/db/seed.ts",
+    "tailwind:css": "npx tailwindcss -i ./src/css/style.css -o ./public/style.css --watch"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "autoprefixer": "^10.4.20",
     "dotenv": "^16.4.5",
     "drizzle-orm": "^0.33.0",
+    "ejs": "^3.1.10",
     "express": "^4.19.2",
-    "pg": "^8.12.0"
+    "pg": "^8.12.0",
+    "postcss": "^8.4.44",
+    "postcss-cli": "^11.0.0",
+    "tailwindcss": "^3.4.10"
   },
   "devDependencies": {
     "@faker-js/faker": "^8.4.1",
     "@types/express": "^4.17.21",
     "@types/node": "^22.5.2",
     "@types/pg": "^8.11.8",
+    "concurrently": "^8.2.2",
     "drizzle-kit": "^0.24.2",
     "nodemon": "^3.1.4",
     "ts-node": "^10.9.2",

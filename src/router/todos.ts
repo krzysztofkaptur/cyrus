@@ -1,21 +1,35 @@
 import { Request, Response, Router } from 'express'
-import { eq, desc, InferSelectModel } from 'drizzle-orm'
-
-import db from '../libs/db/config'
-import { todos } from '../libs/db/schema'
+import {
+  eq,
+  desc,
+  InferSelectModel,
+  ColumnMap,
+  withParam,
+  todos,
+  db
+} from '../libs/db'
 
 import { formatDate } from '../libs/utils'
 
 const router = Router()
 
 router.get('/', async (req: Request, res: Response) => {
-  const { limit } = req.query
-  const todosRes = await db
+  const { limit, order } = req.query
+  const queryBuild = db
     .select()
     .from(todos)
     .limit(+limit! || -1)
+    .$dynamic()
+  const columnMap: ColumnMap = {
+    id: todos.id,
+    name: todos.name,
+    completed: todos.completed,
+    created_at: todos.created_at
+  }
 
-  return res.json(todosRes)
+  const dupa = await withParam(queryBuild, order as string, columnMap)
+
+  return res.json(dupa)
 })
 
 router.get('/:id', async (req: Request, res: Response) => {

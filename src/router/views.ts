@@ -67,6 +67,24 @@ router.get('/docs', (req: Request, res: Response) => {
           .then(res=>res.json())
           .then(json=>console.log(json))
       `
+    },
+    {
+      id: 'get_all_todos_limit',
+      title: 'Get all todos with limit',
+      code: `
+        fetch('${process.env.BASE_URL}/api/v1/todos?limit=5')
+          .then(res=>res.json())
+          .then(json=>console.log(json))
+      `
+    },
+    {
+      id: 'get_all_todos_order',
+      title: 'Get all todos order by id',
+      code: `
+        fetch('${process.env.BASE_URL}/api/v1/todos?order=id')
+          .then(res=>res.json())
+          .then(json=>console.log(json))
+      `
     }
   ]
 

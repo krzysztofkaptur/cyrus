@@ -4,12 +4,16 @@ export type ColumnMap = Record<string, PgColumn>;
 
 export function withParam<T extends PgSelect>(
   qb: T,
-  p: string,
+  order: string,
   colMap: ColumnMap
 ) {
-  const direction = p.startsWith('-') ? 'desc' : 'asc'
-  p = p.replace('-', '')
-  const col = colMap[p]
+  if (!order) {
+    return qb
+  }
+
+  const direction = order.startsWith('-') ? 'desc' : 'asc'
+  order = order.replace('-', '')
+  const col = colMap[order]
   if (!col) {
     return qb
   }

@@ -6,7 +6,8 @@ import {
   ColumnMap,
   withParam,
   todos,
-  db
+  db,
+  count
 } from '../libs/db'
 
 import { formatDate } from '../libs/utils'
@@ -14,12 +15,20 @@ import { formatDate } from '../libs/utils'
 const router = Router()
 
 router.get('/', async (req: Request, res: Response) => {
-  const { limit, order } = req.query
+  const { limit, order, page = '1', per_page = '10' } = req.query
+
+  const offset = (+page! - 1) * +per_page!
+
+  // todo: move it to one query
+  const countResult = await db.select({ count: count() }).from(todos)
+
   const queryBuild = db
     .select()
     .from(todos)
-    .limit(+limit! || -1)
+    .limit(+limit! || +per_page! || -1)
+    .offset(offset)
     .$dynamic()
+
   const columnMap: ColumnMap = {
     id: todos.id,
     name: todos.name,
@@ -27,9 +36,20 @@ router.get('/', async (req: Request, res: Response) => {
     created_at: todos.created_at
   }
 
-  const query = await withParam(queryBuild, order as string, columnMap)
+  const total = countResult[0].count
+  const totalPages = Math.ceil(total / +per_page)
 
-  return res.json(query)
+  const results = await withParam(queryBuild, order as string, columnMap)
+
+  const prev = +page === 1 ? null : `/api/v1/todos?page=${+page - 1}`
+  const next = +page + 1 > totalPages ? null : `/api/v1/todos?page=${+page + 1}`
+
+  return res.json({
+    prev,
+    next,
+    total,
+    results
+  })
 })
 
 router.get('/:id', async (req: Request, res: Response) => {

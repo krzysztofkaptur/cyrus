@@ -27,9 +27,9 @@ router.get('/', async (req: Request, res: Response) => {
     created_at: todos.created_at
   }
 
-  const dupa = await withParam(queryBuild, order as string, columnMap)
+  const query = await withParam(queryBuild, order as string, columnMap)
 
-  return res.json(dupa)
+  return res.json(query)
 })
 
 router.get('/:id', async (req: Request, res: Response) => {

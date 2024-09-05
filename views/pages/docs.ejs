@@ -15,17 +15,29 @@
 
         <h2 id="todos" class="text-4xl">Todos</h2>
 
-        <section class="flex flex-col gap-8 py-8">
+        <section class="flex flex-col gap-20 py-8">
           <% routes.forEach(function(route){ %>
             <article>
-              <header>
-                <h3 id="<%= route.id %>" class="text-xl"><%= route.title %></h3>
-              </header>
-              <pre>
-                <code class="bg-zinc-900 text-white block rounded-md">
-                  <%= route.code %>
-                </code>
-              </pre>
+              <div>
+                <header>
+                  <h3 id="<%= route.id %>" class="text-xl"><%= route.title %></h3>
+                </header>
+                <pre>
+                  <code class="bg-zinc-900 text-white block rounded-md">
+                    <%= route.code %>
+                  </code>
+                </pre>
+              </div>
+              
+              <button class="show-response-button border px-4 py-2 rounded border-orange-400">Show response</button>
+              
+              <div class="hidden response">
+                <pre>
+                  <code class="bg-zinc-900 text-white block rounded-md">
+                    <%= route.responseExample %>
+                  </code>
+                </pre>
+              </div>
             </article>
           <% }); %>
         </section>
@@ -34,5 +46,24 @@
       </section>
     </main>
   </section>
+
+  <script>
+    const buttons = document.querySelectorAll('.show-response-button')
+    
+    buttons.forEach((button) => {
+      button.addEventListener('click', () => {
+        const article = button.closest("article")
+        const responseSection = article.querySelector(".response")
+
+        if (responseSection.classList.contains('hidden')) {
+          responseSection.classList.remove('hidden')
+          button.textContent = 'Hide response'
+        } else {
+          responseSection.classList.add('hidden')
+          button.textContent = 'Show response'
+        }
+      })
+    })
+  </script>
 
 <%- include('../layouts/footer'); %>

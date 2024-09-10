@@ -1,7 +1,7 @@
 import { Request, Response } from 'express'
 
 export const renderLandingPage = (req: Request, res: Response) => {
-  return res.render('pages/home')
+  return res.render('pages/home', { path: '/' })
 }
 
 export const renderDocsPage = (req: Request, res: Response) => {
@@ -252,5 +252,5 @@ export const renderDocsPage = (req: Request, res: Response) => {
     }
   ]
 
-  return res.render('pages/docs', { routes })
+  return res.render('pages/docs', { routes, path: '/docs' })
 }

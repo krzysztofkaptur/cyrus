@@ -4,7 +4,7 @@
     <%- include('../components/sidebar'); %>
     
     
-    <main class="flex-1 ml-60">
+    <main class="flex-1 lg:ml-60">
       <%- include('../components/nav'); %>
 
       <section class="p-4 max-w-5xl">
@@ -23,7 +23,7 @@
                   <h3 id="<%= route.id %>" class="text-xl"><%= route.title %></h3>
                 </header>
                 <pre>
-                  <code class="bg-zinc-900 text-white block rounded-md">
+                  <code class="bg-zinc-900 text-white block rounded-lg text-sm lg:text-base max-w-[calc(100vw-3.25rem)] overflow-auto pr-4">
                     <%= route.code %>
                   </code>
                 </pre>
@@ -33,7 +33,7 @@
               
               <div class="hidden response">
                 <pre>
-                  <code class="bg-zinc-900 text-white block rounded-md">
+                  <code class="bg-zinc-900 text-white block rounded-lg text-sm lg:text-base max-w-[calc(100vw-3.25rem)] overflow-auto pr-4">
                     <%= route.responseExample %>
                   </code>
                 </pre>

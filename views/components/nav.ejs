@@ -1,8 +1,31 @@
-<nav class="p-4 max-w-7xl">
+<nav class="p-4 max-w-7xl flex justify-between">
+  <% if(path === '/docs') { %>
+     <div class="lg:hidden">
+    <button id="menu-toggle" class="h-8 w-8 flex gap-1 flex-col">
+      <div class="w-8 h-1 bg-black rounded"></div>
+      <div class="w-8 h-1 bg-black rounded"></div>
+      <div class="w-8 h-1 bg-black rounded"></div>
+    </button>
+  </div>
+  <% } %>
+
   <div class="max-w-6xl mx-auto w-full flex justify-end gap-4">
     <a href="/">Home</a>
     <a href="/docs">Docs</a>
     <a href="https://github.com/krzysztofkaptur/fakeapi" target="_blank">GitHub</a>
-    <a href="/">Buy me a coffee</a>
   </div>
 </nav>
+
+<script>
+  const menuToggle = document.getElementById('menu-toggle')
+  const sidebar = document.getElementById('sidebar')
+  const closeNavBtn = document.getElementById('close-nav')
+
+  menuToggle.addEventListener('click', () => {
+    sidebar.classList.remove('hidden')
+  })
+
+  closeNavBtn.addEventListener('click', () => {
+    sidebar.classList.add('hidden')
+  })
+</script>

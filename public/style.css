@@ -796,6 +796,11 @@ video {
   padding-right: 0.5rem;
 }
 
+.py-20 {
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+}
+
 .pr-4 {
   padding-right: 1rem;
 }
@@ -892,6 +897,11 @@ video {
   font-family: 'Open Sans', sans-serif;
 }
 
+.hover\:text-accent:hover {
+  --tw-text-opacity: 1;
+  color: rgb(237 81 7 / var(--tw-text-opacity));
+}
+
 @media (min-width: 1024px) {
   .lg\:block {
     display: block;
@@ -912,6 +922,10 @@ video {
 
   .lg\:pl-60 {
     padding-left: 15rem;
+  }
+
+  .lg\:pr-60 {
+    padding-right: 15rem;
   }
 
   .lg\:text-base {

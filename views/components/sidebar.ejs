@@ -1,19 +1,19 @@
-<aside id="sidebar" class="hidden border-r min-h-screen p-4 lg:block w-60 border-secondary z-50 bg-primary">
+<aside id="sidebar" class="hidden fixed border-r min-h-screen px-4 py-20 lg:block w-60 border-secondary z-50 bg-primary">
   <div class="relative">
     <div class="flex flex-col gap-12">
       <section class="flex flex-col gap-2">
         <h4 class="text-xl font-semibold"> 
-          <a href="#todos" class="uppercase">General</a>
+          <a href="#todos" class="uppercase hover:text-accent">General</a>
         </h4>
-        <a href="#how_to" class="text-link text-sm">How to use it?</a>
+        <a href="#how_to" class="text-link text-sm hover:text-accent">How to use it?</a>
       </section>
   
       <section class="flex flex-col gap-6">
         <h4 class="text-xl font-semibold">
-          <a href="#todos" class="uppercase">Todos</a>
+          <a href="#todos" class="uppercase hover:text-accent">Todos</a>
         </h4>
         <% routes.forEach(function(route){ %>
-          <a href="#<%= route.id %>" class="text-link text-sm"><%= route.title %></a>
+          <a href="#<%= route.id %>" class="text-link text-sm hover:text-accent"><%= route.title %></a>
         <% }); %>
       </section>
     </div>

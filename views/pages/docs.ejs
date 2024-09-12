@@ -9,18 +9,18 @@
 
       <section class="px-4 lg:px-10 py-4 max-w-5xl">
         <div class="my-20 max-w-xl flex flex-col gap-4">
-          <h2 id="how_to" class="text-4xl">How to use it?</h2>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat dolore, aperiam ullam deserunt accusantium voluptates. Totam rerum ullam doloribus excepturi facilis debitis non fuga maxime, dolor iusto nemo qui nobis iure animi, quam natus eum repudiandae nisi, cupiditate facere reprehenderit accusamus similique quod odit? Cupiditate libero illum laborum eos itaque?</p>
+          <h2 id="how_to" class="text-3xl text-accent font-semibold">How to use it</h2>
+          <p>You can copy/paste examples from below into your codebase to get JSON responses. Have fun!</p>
         </div>
 
-        <h2 id="todos" class="text-4xl">Todos</h2>
+        <h2 id="todos" class="text-3xl text-accent font-semibold">Todos</h2>
 
-        <section class="flex flex-col gap-20 py-8">
+        <section class="flex flex-col gap-16 py-8">
           <% routes.forEach(function(route){ %>
             <article>
               <div>
                 <header>
-                  <h3 id="<%= route.id %>" class="text-xl"><%= route.title %></h3>
+                  <h3 id="<%= route.id %>" class="text-lg font-semibold"><%= route.title %></h3>
                 </header>
                 <pre>
                   <code class="bg-secondary text-white block rounded-lg text-sm lg:text-base max-w-[calc(100vw-3.25rem)] overflow-auto pr-4">

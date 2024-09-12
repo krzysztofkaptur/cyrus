@@ -712,6 +712,10 @@ video {
   gap: 3rem;
 }
 
+.gap-16 {
+  gap: 4rem;
+}
+
 .overflow-auto {
   overflow: auto;
 }

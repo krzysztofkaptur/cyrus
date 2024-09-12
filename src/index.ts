@@ -7,11 +7,11 @@ import ViewsRouter from './router/views'
 const app = express()
 
 const limiter = rateLimit({
-  windowMs: +process.env.RATE_LIMIT_TIME! || 900000,
+  windowMs: +process.env.RATE_LIMIT_TIME! || 600000,
   limit: +process.env.RATE_LIMIT_COUNT! || 100
 })
 
-app.use(limiter)
+// app.use(limiter)
 
 app.set('view engine', 'ejs')
 app.use(express.static('public'))

@@ -1,16 +1,30 @@
 <%- include('../layouts/base'); %>
 
   <section>
-    <main class="max-w-4xl mx-auto">
+    <main class="max-w-7xl mx-auto relative">
       <%- include('../components/nav'); %>
       
-      <section class="flex flex-col gap-4 px-4 py-16">
-        <h1 class="text-4xl font-semibold">Fakeapi</h1>
-        <p class="text-lg">Free to use FAKE API.</p>
-        <div class="flex gap-4">
-          <a href="https://github.com/krzysztofkaptur/fakeapi" target="_blank" class="border border-orange-400 p-2">View on GitHub</a>
-          <a href="/docs" class="bg-orange-400 p-2">Read docs</a>
+      <section class="flex flex-col gap-20 px-4 py-16 text-center">
+        <header class="flex flex-col gap-8">
+          <h1 class="text-7xl font-semibold">Cyrus API</h1>
+          <h3 class="text-lg">Free to use fake REST API endpoints for your next prototype.</h3>
+        </header>
+        <div class="flex gap-4 justify-center">
+          <a href="https://github.com/krzysztofkaptur/fakeapi" target="_blank" class="border border-link text-link py-2 px-4 font-semibold">View on GitHub</a>
+          <a href="/docs" class="bg-accent py-2 px-4 text-primary font-semibold">Read docs</a>
         </div>
+      </section>
+      <section class="flex flex-col gap-8 px-4 py-16 items-start">
+        <header class="flex flex-col gap-4">
+          <h2 class="text-3xl text-accent">Endpoints</h2>
+          <p>Currently available main endpoints</p>
+        </header>
+        <ul class="max-w-xs w-full">
+          <li class="flex gap-4 justify-between">
+            <a href="/docs#todos" class="text-link font-semibold">Todos</a><span>20 items</span>
+          </li>
+        </ul>
+        <a href="/docs" class="bg-accent py-2 px-4 text-primary font-semibold text-sm">View docs</a>
       </section>
     </main>
   </section>

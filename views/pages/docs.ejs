@@ -4,10 +4,10 @@
     <%- include('../components/sidebar'); %>
     
     
-    <main class="flex-1 lg:ml-60">
+    <main class="flex-1 lg:pl-60 relative max-w-7xl">
       <%- include('../components/nav'); %>
 
-      <section class="p-4 max-w-5xl">
+      <section class="px-4 lg:px-10 py-4 max-w-5xl">
         <div class="my-20 max-w-xl flex flex-col gap-4">
           <h2 id="how_to" class="text-4xl">How to use it?</h2>
           <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat dolore, aperiam ullam deserunt accusantium voluptates. Totam rerum ullam doloribus excepturi facilis debitis non fuga maxime, dolor iusto nemo qui nobis iure animi, quam natus eum repudiandae nisi, cupiditate facere reprehenderit accusamus similique quod odit? Cupiditate libero illum laborum eos itaque?</p>
@@ -23,17 +23,17 @@
                   <h3 id="<%= route.id %>" class="text-xl"><%= route.title %></h3>
                 </header>
                 <pre>
-                  <code class="bg-zinc-900 text-white block rounded-lg text-sm lg:text-base max-w-[calc(100vw-3.25rem)] overflow-auto pr-4">
+                  <code class="bg-secondary text-white block rounded-lg text-sm lg:text-base max-w-[calc(100vw-3.25rem)] overflow-auto pr-4">
                     <%= route.code %>
                   </code>
                 </pre>
               </div>
               
-              <button class="show-response-button border px-4 py-2 rounded border-orange-400">Show response</button>
+              <button class="bg-accent text-sm py-2 px-4 text-primary font-semibold" data-show-response>Show response</button>
               
               <div class="hidden response">
                 <pre>
-                  <code class="bg-zinc-900 text-white block rounded-lg text-sm lg:text-base max-w-[calc(100vw-3.25rem)] overflow-auto pr-4">
+                  <code class="bg-secondary text-white block rounded-lg text-sm lg:text-base max-w-[calc(100vw-3.25rem)] overflow-auto pr-4">
                     <%= route.responseExample %>
                   </code>
                 </pre>
@@ -48,8 +48,8 @@
   </section>
 
   <script>
-    const buttons = document.querySelectorAll('.show-response-button')
-    
+    const buttons = document.querySelectorAll('[data-show-response]')
+
     buttons.forEach((button) => {
       button.addEventListener('click', () => {
         const article = button.closest("article")

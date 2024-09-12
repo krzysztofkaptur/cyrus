@@ -1,8 +1,20 @@
 /** @type {import('tailwindcss').Config} */
+
+const colors = require('tailwindcss/colors')
+
 module.exports = {
   content: ['./src/**/*.{html,js}', './views/**/*.ejs'],
   theme: {
-    extend: {}
+    extend: {
+      colors: {
+        primary: '#f1f1f1',
+        secondary: '#0C0C0C',
+        neutral: '#0C0C0C',
+        accent: '#ED5107',
+        link: '#0C0C0C'
+      }
+    }
   },
-  plugins: []
+  plugins: [],
+  darkMode: 'class'
 }

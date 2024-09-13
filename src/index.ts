@@ -1,5 +1,6 @@
 import express from 'express'
 import { rateLimit } from 'express-rate-limit'
+import 'dotenv/config'
 
 import TodosRouter from './router/todos'
 import ViewsRouter from './router/views'
@@ -11,7 +12,7 @@ const limiter = rateLimit({
   limit: +process.env.RATE_LIMIT_COUNT! || 100
 })
 
-// app.use(limiter)
+app.use(limiter)
 
 app.set('view engine', 'ejs')
 app.use(express.static('public'))

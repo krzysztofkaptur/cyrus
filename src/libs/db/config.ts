@@ -1,12 +1,7 @@
-import { drizzle, Pool } from './'
+import { drizzle } from 'drizzle-orm/better-sqlite3'
+import Database from 'better-sqlite3'
 
-import 'dotenv/config'
+const sqlite = new Database('sqlite.db')
+const db = drizzle(sqlite)
 
-const pool = new Pool({
-  host: process.env.DB_HOST,
-  port: +process.env.DB_PORT!,
-  user: process.env.DB_USER,
-  password: process.env.DB_PASSWORD,
-  database: process.env.DB_DATABASE
-})
-export const db = drizzle(pool)
+export { db }

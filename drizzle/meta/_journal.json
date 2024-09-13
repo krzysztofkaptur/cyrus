@@ -1,33 +1,12 @@
 {
   "version": "7",
-  "dialect": "postgresql",
+  "dialect": "sqlite",
   "entries": [
     {
       "idx": 0,
-      "version": "7",
-      "when": 1725206058432,
-      "tag": "0000_right_micromax",
-      "breakpoints": true
-    },
-    {
-      "idx": 1,
-      "version": "7",
-      "when": 1725206342754,
-      "tag": "0001_clammy_nextwave",
-      "breakpoints": true
-    },
-    {
-      "idx": 2,
-      "version": "7",
-      "when": 1725207716463,
-      "tag": "0002_amusing_shinko_yamashiro",
-      "breakpoints": true
-    },
-    {
-      "idx": 3,
-      "version": "7",
-      "when": 1725277990174,
-      "tag": "0003_mature_next_avengers",
+      "version": "6",
+      "when": 1726241000756,
+      "tag": "0000_lean_sauron",
       "breakpoints": true
     }
   ]

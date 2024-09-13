@@ -8,7 +8,7 @@ export const fetchTodosBodySchema = z.object({
 })
 
 export const fetchTodoBodySchema = z.object({
-  id: z.number()
+  id: z.string()
 })
 
 export const patchTodoBodySchema = z.object({
@@ -19,7 +19,7 @@ export const patchTodoBodySchema = z.object({
 })
 
 export const deleteTodoBodySchema = z.object({
-  id: z.number()
+  id: z.string()
 })
 
 export const postTodoBodySchema = z.object({

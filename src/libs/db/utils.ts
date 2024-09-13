@@ -1,8 +1,9 @@
-import { desc, asc, type PgSelect, type PgColumn } from './'
+import { desc, asc } from './'
+import type { SQLiteSelect, SQLiteColumn } from 'drizzle-orm/sqlite-core';
 
-export type ColumnMap = Record<string, PgColumn>;
+export type ColumnMap = Record<string, SQLiteColumn>;
 
-export function withParam<T extends PgSelect>(
+export function withParam<T extends SQLiteSelect>(
   qb: T,
   order: string,
   colMap: ColumnMap

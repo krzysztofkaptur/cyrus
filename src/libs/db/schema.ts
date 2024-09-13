@@ -1,10 +1,12 @@
-import { pgTable, serial, varchar, boolean, date } from './'
+import { sqliteTable, text, integer } from 'drizzle-orm/sqlite-core'
 
-export const todos = pgTable('todos', {
-  id: serial('id').primaryKey(),
-  created_at: date('created_at'),
-  updated_at: date('updated_at'),
-  name: varchar('name', { length: 50 }).notNull(),
-  description: varchar('description', { length: 256 }),
-  completed: boolean('completed')
+export const todos = sqliteTable('todos', {
+  id: text('id')
+    .primaryKey()
+    .$defaultFn(() => crypto.randomUUID()),
+  created_at: integer('created_at', { mode: 'timestamp' }),
+  updated_at: integer('updated_at', { mode: 'timestamp' }),
+  name: text('name', { length: 50 }).notNull(),
+  description: text('description', { length: 256 }),
+  completed: integer('completed')
 })

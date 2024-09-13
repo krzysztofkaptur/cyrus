@@ -1,4 +1,4 @@
-import { Request, Response, Router } from 'express'
+import { Request, Response } from 'express'
 import { eq, desc, ColumnMap, withParam, todos, db, count } from '../../libs/db'
 
 import { formatDate } from '../../libs/utils'
@@ -95,7 +95,7 @@ export const fetchTodo = async (
   const { id } = req.params
 
   const body: FetchSingleBody = {
-    id: +id
+    id
   }
 
   const { success, error } = handleValidation(fetchTodoBodySchema, body)
@@ -135,7 +135,7 @@ export const updateTodo = async (
   const todoRes = await db
     .select()
     .from(todos)
-    .where(eq(todos.id, +id))
+    .where(eq(todos.id, id))
 
   const updatedTodo = {
     ...todoRes[0],
@@ -154,7 +154,7 @@ export const deleteTodo = async (
   const { id } = req.params
 
   const body: DeleteBody = {
-    id: +id
+    id
   }
 
   const { success, error } = handleValidation(deleteTodoBodySchema, body)
@@ -198,9 +198,9 @@ export const createTodo = async (
     id: lastTodo[0].id,
     name,
     description,
-    completed: false,
-    created_at: formatDate(new Date()),
-    updated_at: formatDate(new Date())
+    completed: 0,
+    created_at: new Date(),
+    updated_at: new Date()
   }
 
   return res.json(newTodo)

@@ -8,4 +8,4 @@ https://cyrus-api.com/docs
 
 ## Data
 
-Todos: [https://cyrus-api.com/todos](http://cyrus-api.com/todos)
+Todos: [https://cyrus-api.com/api/v1/todos](https://cyrus-api.com/api/v1/todos)

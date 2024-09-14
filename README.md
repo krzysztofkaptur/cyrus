@@ -4,8 +4,8 @@ A fake REST API ready to help you with a first steps in a new project.
 
 ## How to
 
-http://localhost:5000/docs
+https://cyrus-api.com/docs
 
 ## Data
 
-Todos: [http://localhost:5000/todos](http://localhost:5000/todos)
+Todos: [https://cyrus-api.com/todos](http://cyrus-api.com/todos)

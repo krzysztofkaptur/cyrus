@@ -17,7 +17,7 @@ async function main() {
   for (let i = 0; i < config.todosCount; i++) {
     const todoName = faker.lorem.words({ min: 1, max: 3 })
     const todoDescription = faker.lorem.sentences({ max: 1, min: 1 })
-    const todoCompleted = 0
+    const todoCompleted = faker.number.int({ min: 0, max: 1 })
     const todoCreatedAt = faker.date.past()
     const todoUpdatedAt = faker.date.future({ years: 1 })
 

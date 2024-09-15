@@ -1,8 +1,9 @@
 import { faker } from '@faker-js/faker'
-import { todos } from './schema'
-
 import { drizzle } from 'drizzle-orm/better-sqlite3'
 import Database from 'better-sqlite3'
+
+import { todos } from './schema'
+import { config } from '../../config/default'
 
 const sqlite = new Database('sqlite.db')
 const db = drizzle(sqlite)
@@ -13,7 +14,7 @@ async function main() {
 
   console.log('seeding started')
 
-  for (let i = 0; i < 10; i++) {
+  for (let i = 0; i < config.todosCount; i++) {
     const todoName = faker.lorem.words({ min: 1, max: 3 })
     const todoDescription = faker.lorem.sentences({ max: 1, min: 1 })
     const todoCompleted = 0

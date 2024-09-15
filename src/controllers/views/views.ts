@@ -26,7 +26,7 @@ export const renderDocsPage = (req: Request, res: Response) => {
               "updated_at": "2024-09-04",
               "name": "commodo speciosus",
               "description": "At utilis usus optio tondeo.",
-              "completed": true
+              "completed": 0
             },
             ...
           ]
@@ -48,7 +48,7 @@ export const renderDocsPage = (req: Request, res: Response) => {
           "updated_at": "2024-09-04",
           "name": "commodo speciosus",
           "description": "At utilis usus optio tondeo.",
-          "completed": true
+          "completed": 1
         }
       `
     },
@@ -73,7 +73,7 @@ export const renderDocsPage = (req: Request, res: Response) => {
           "updated_at": "2024-09-04",
           "name": "commodo speciosus",
           "description": "At utilis usus optio tondeo.",
-          "completed": true
+          "completed": 0
         }
       `
     },
@@ -86,7 +86,7 @@ export const renderDocsPage = (req: Request, res: Response) => {
           body: JSON.stringify({
             name: "test edited",
             description: "test edited",
-            completed: true
+            completed: 1
           })
         })
           .then(res=>res.json())
@@ -99,7 +99,7 @@ export const renderDocsPage = (req: Request, res: Response) => {
           "updated_at": "2024-09-04",
           "name": "commodo speciosus",
           "description": "At utilis usus optio tondeo.",
-          "completed": true
+          "completed": 0
         }
       `
     },
@@ -120,7 +120,7 @@ export const renderDocsPage = (req: Request, res: Response) => {
           "updated_at": "2024-09-04",
           "name": "commodo speciosus",
           "description": "At utilis usus optio tondeo.",
-          "completed": true
+          "completed": 0
         }
       `
     },
@@ -144,7 +144,7 @@ export const renderDocsPage = (req: Request, res: Response) => {
               "updated_at": "2024-09-04",
               "name": "commodo speciosus",
               "description": "At utilis usus optio tondeo.",
-              "completed": true
+              "completed": 0
             },
             {
               "id": 59,
@@ -152,7 +152,7 @@ export const renderDocsPage = (req: Request, res: Response) => {
               "updated_at": "2025-08-01",
               "name": "acerbitas",
               "description": "Vesco eligendi surgo vulariter stipes synagoga.",
-              "completed": true
+              "completed": 0
             },
             {
               "id": 60,
@@ -160,7 +160,7 @@ export const renderDocsPage = (req: Request, res: Response) => {
               "updated_at": "2025-08-17",
               "name": "vinitor placeat",
               "description": "Quisquam virtus aveho fugiat nam benigne studio.",
-              "completed": false
+              "completed": 0
             }
           ]
         }
@@ -186,7 +186,7 @@ export const renderDocsPage = (req: Request, res: Response) => {
               "updated_at": "2024-09-04",
               "name": "commodo speciosus",
               "description": "At utilis usus optio tondeo.",
-              "completed": true
+              "completed": 0
             },
             {
               "id": 59,
@@ -194,7 +194,7 @@ export const renderDocsPage = (req: Request, res: Response) => {
               "updated_at": "2025-08-01",
               "name": "acerbitas",
               "description": "Vesco eligendi surgo vulariter stipes synagoga.",
-              "completed": true
+              "completed": 0
             },
             {
               "id": 60,
@@ -202,7 +202,7 @@ export const renderDocsPage = (req: Request, res: Response) => {
               "updated_at": "2025-08-17",
               "name": "vinitor placeat",
               "description": "Quisquam virtus aveho fugiat nam benigne studio.",
-              "completed": false
+              "completed": 0
             }
           ]
         }
@@ -228,7 +228,7 @@ export const renderDocsPage = (req: Request, res: Response) => {
               "updated_at": "2025-03-21",
               "name": "doloremque tricesimus aut",
               "description": "Exercitationem cicuta templum patruus.",
-              "completed": true
+              "completed": 0
             },
             {
               "id": 62,
@@ -236,7 +236,7 @@ export const renderDocsPage = (req: Request, res: Response) => {
               "updated_at": "2025-01-30",
               "name": "volva demum",
               "description": "Aeneus desolo decipio victus pauci attonbitus auctor cura porro causa.",
-              "completed": false
+              "completed": 0
             },
             {
               "id": 63,
@@ -244,7 +244,7 @@ export const renderDocsPage = (req: Request, res: Response) => {
               "updated_at": "2025-06-03",
               "name": "termes porro",
               "description": "Comedo commemoro ago demergo tergiversatio adopto cetera ex caecus denique.",
-              "completed": true
+              "completed": 0
             }
           ]
         }

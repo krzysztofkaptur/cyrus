@@ -120,7 +120,7 @@ export const updateTodo = async (
   const { name, description, completed } = req.body
 
   const body: PatchRequestBody = {
-    id: +id,
+    id,
     name,
     description,
     completed

@@ -12,10 +12,15 @@ export const fetchTodoBodySchema = z.object({
 })
 
 export const patchTodoBodySchema = z.object({
-  id: z.number(),
+  id: z.string(),
   name: z.string().optional(),
   description: z.string().optional(),
-  completed: z.boolean()
+  completed: z
+    .number()
+    .int()
+    .min(0)
+    .max(1)
+    .optional()
 })
 
 export const deleteTodoBodySchema = z.object({

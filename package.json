@@ -9,7 +9,8 @@
     "dev": "nodemon src/index.ts",
     "db:generate": "npx drizzle-kit generate --config=./src/drizzle.config.ts",
     "db:migrate": "npx drizzle-kit migrate --config=./src/drizzle.config.ts",
-    "db:seed": "node -r esbuild-register src/libs/db/seed.ts",
+    "db:seed": "node -r esbuild-register src/libs/db/seeds/index.ts",
+    "db:ui": "npx drizzle-kit studio --config=./src/drizzle.config.ts",
     "tailwind:css": "npx tailwindcss -i ./src/css/style.css -o ./public/style.css --watch",
     "clean": "rimraf dist"
   },
@@ -30,7 +31,7 @@
     "zod": "^3.23.8"
   },
   "devDependencies": {
-    "@faker-js/faker": "^8.4.1",
+    "@faker-js/faker": "^9.0.1",
     "@types/better-sqlite3": "^7.6.11",
     "@types/express": "^4.17.21",
     "@types/node": "^22.5.2",

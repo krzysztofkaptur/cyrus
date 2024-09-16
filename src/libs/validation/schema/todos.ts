@@ -1,16 +1,6 @@
 import { z } from '../'
 
-export const fetchTodosBodySchema = z.object({
-  limit: z.number().optional(),
-  order: z.string().optional(),
-  page: z.number(),
-  per_page: z.number()
-})
-
-export const fetchTodoBodySchema = z.object({
-  id: z.string()
-})
-
+// todo: add extra validation based on the schema min, max etc.
 export const patchTodoBodySchema = z.object({
   id: z.string(),
   name: z.string().optional(),
@@ -23,11 +13,7 @@ export const patchTodoBodySchema = z.object({
     .optional()
 })
 
-export const deleteTodoBodySchema = z.object({
-  id: z.string()
-})
-
-export const postTodoBodySchema = z.object({
+export const addTodoBodySchema = z.object({
   name: z.string(),
   description: z.string()
 })

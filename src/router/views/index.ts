@@ -1,1 +1,1 @@
-export { default } from './views'
+export { viewsRouter } from './views'

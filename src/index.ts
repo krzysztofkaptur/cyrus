@@ -2,8 +2,7 @@ import express from 'express'
 import { rateLimit } from 'express-rate-limit'
 import 'dotenv/config'
 
-import TodosRouter from './router/todos'
-import ViewsRouter from './router/views'
+import { todosRouter, viewsRouter, usersRouter } from './router'
 
 const app = express()
 
@@ -19,7 +18,8 @@ app.set('view engine', 'ejs')
 app.use(express.static('public'))
 
 app.use(express.json())
-app.use('/', ViewsRouter)
-app.use('/api/v1/todos', TodosRouter)
+app.use('/', viewsRouter)
+app.use('/api/v1/todos', todosRouter)
+app.use('/api/v1/users', usersRouter)
 
 app.listen(process.env.PORT || 8000, () => console.log('server is up'))

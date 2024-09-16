@@ -1,37 +1,22 @@
 import { Request, Response } from 'express'
-import { eq, desc, ColumnMap, withParam, todos, db, count } from '../../libs/db'
+import { eq, ColumnMap, withParam, todos, db, count } from '../../libs/db'
 
-import { formatDate } from '../../libs/utils'
-import {
-  DeleteBody,
-  DeleteRequestParams,
-  FetchAllBody,
-  FetchAllRequestQuery,
-  FetchSingleBody,
-  FetchSingleRequestParams,
+import type {
   PatchRequestBody,
-  PatchRequestParams,
   PostRequestBody,
   Todo
 } from './types'
 
+import type { FetchAllRequestQuery, PatchRequestParams, DeleteRequestParams } from '../types'
+import type { FetchAllBody, FetchSingleRequestParams, FetchSingleBody, DeleteBody } from '../types'
+
 import {
-  fetchTodosBodySchema,
-  fetchTodoBodySchema,
   patchTodoBodySchema,
-  deleteTodoBodySchema,
-  postTodoBodySchema
+  addTodoBodySchema
 } from '../../libs/validation/schema/todos'
-import { ZodObject, ZodRawShape } from 'zod'
+import { fetchAllBodySchema, fetchSingleBodySchema, deleteBodySchema } from '../../libs/validation/schema/general'
 
-function handleValidation<T extends ZodRawShape>(
-  schema: ZodObject<T>,
-  body: unknown
-) {
-  const validation = schema.safeParse(body)
-
-  return validation
-}
+import { handleBodyValidation } from '../../libs/utils'
 
 export const fetchTodos = async (
   req: Request<{}, {}, {}, FetchAllRequestQuery>,
@@ -46,7 +31,7 @@ export const fetchTodos = async (
     per_page: +per_page
   }
 
-  const { success, error } = handleValidation(fetchTodosBodySchema, body)
+  const { success, error } = handleBodyValidation(fetchAllBodySchema, body)
 
   if (!success) {
     return res.json(error.format())
@@ -65,7 +50,6 @@ export const fetchTodos = async (
     .$dynamic()
 
   const columnMap: ColumnMap = {
-    id: todos.id,
     name: todos.name,
     completed: todos.completed,
     created_at: todos.created_at
@@ -98,7 +82,7 @@ export const fetchTodo = async (
     id
   }
 
-  const { success, error } = handleValidation(fetchTodoBodySchema, body)
+  const { success, error } = handleBodyValidation(fetchSingleBodySchema, body)
 
   if (!success) {
     return res.json(error.format())
@@ -126,7 +110,7 @@ export const updateTodo = async (
     completed
   }
 
-  const { success, error } = handleValidation(patchTodoBodySchema, body)
+  const { success, error } = handleBodyValidation(patchTodoBodySchema, body)
 
   if (!success) {
     return res.json(error.format())
@@ -157,7 +141,7 @@ export const deleteTodo = async (
     id
   }
 
-  const { success, error } = handleValidation(deleteTodoBodySchema, body)
+  const { success, error } = handleBodyValidation(deleteBodySchema, body)
 
   if (!success) {
     return res.json(error.format())
@@ -182,20 +166,14 @@ export const createTodo = async (
     description
   }
 
-  const { success, error } = handleValidation(postTodoBodySchema, body)
+  const { success, error } = handleBodyValidation(addTodoBodySchema, body)
 
   if (!success) {
     return res.json(error.format())
   }
 
-  const lastTodo = await db
-    .select()
-    .from(todos)
-    .orderBy(desc(todos.id))
-    .limit(1)
-
   const newTodo: Todo = {
-    id: lastTodo[0].id,
+    id: crypto.randomUUID(),
     name,
     description,
     completed: 0,

@@ -1,4 +1,4 @@
-<aside id="sidebar" class="hidden fixed border-r min-h-screen px-4 py-20 lg:block w-60 border-secondary z-50 bg-primary">
+<aside id="sidebar" class="hidden fixed border-r min-h-screen px-4 py-20 lg:block w-60 border-secondary z-50 bg-primary h-full overflow-auto">
   <div class="relative">
     <div class="flex flex-col gap-12">
       <section class="flex flex-col gap-2">
@@ -12,8 +12,17 @@
         <h4 class="text-xl font-semibold">
           <a href="#todos" class="uppercase hover:text-accent">Todos</a>
         </h4>
-        <% routes.forEach(function(route){ %>
-          <a href="#<%= route.id %>" class="text-link text-sm hover:text-accent"><%= route.title %></a>
+        <% todos.forEach(function(todo){ %>
+          <a href="#<%= todo.id %>" class="text-link text-sm hover:text-accent"><%= todo.title %></a>
+        <% }); %>
+      </section>
+
+      <section class="flex flex-col gap-6">
+        <h4 class="text-xl font-semibold">
+          <a href="#users" class="uppercase hover:text-accent">Users</a>
+        </h4>
+        <% users.forEach(function(user){ %>
+          <a href="#<%= user.id %>" class="text-link text-sm hover:text-accent"><%= user.title %></a>
         <% }); %>
       </section>
     </div>

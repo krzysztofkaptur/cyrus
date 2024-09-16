@@ -8,12 +8,12 @@ import {
   updateTodo
 } from '../../controllers/todos/todos'
 
-const router = Router()
+const todosRouter = Router()
 
-router.get('/', fetchTodos)
-router.get('/:id', fetchTodo)
-router.patch('/:id', updateTodo)
-router.delete('/:id', deleteTodo)
-router.post('/', createTodo)
+todosRouter.get('/', fetchTodos)
+todosRouter.get('/:id', fetchTodo)
+todosRouter.patch('/:id', updateTodo)
+todosRouter.delete('/:id', deleteTodo)
+todosRouter.post('/', createTodo)
 
-export default router
+export { todosRouter }

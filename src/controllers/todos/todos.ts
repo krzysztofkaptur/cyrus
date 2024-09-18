@@ -1,10 +1,10 @@
 import { Request, Response } from 'express'
-import { eq, ColumnMap, withParam, todos, db, count } from '../../libs/db'
+
+import todoService from '../../services/todos'
 
 import type {
   PatchRequestBody,
   PostRequestBody,
-  Todo
 } from './types'
 
 import type { FetchAllRequestQuery, PatchRequestParams, DeleteRequestParams } from '../types'
@@ -34,35 +34,10 @@ export const fetchTodos = async (
   const { success, error } = handleBodyValidation(fetchAllBodySchema, body)
 
   if (!success) {
-    return res.json(error.format())
+    return res.status(400).json(error.format())
   }
 
-  const offset = (body.page - 1) * body.per_page
-
-  // todo: move it to one query
-  const countResult = await db.select({ count: count() }).from(todos)
-
-  const queryBuild = db
-    .select()
-    .from(todos)
-    .limit(body.limit || body.per_page || -1)
-    .offset(offset)
-    .$dynamic()
-
-  const columnMap: ColumnMap = {
-    name: todos.name,
-    completed: todos.completed,
-    created_at: todos.created_at
-  }
-
-  const total = countResult[0].count
-  const totalPages = Math.ceil(total / body.per_page)
-
-  const results = await withParam(queryBuild, order as string, columnMap)
-
-  const prev = body.page === 1 ? null : `/api/v1/todos?page=${body.page - 1}`
-  const next =
-    body.page + 1 > totalPages ? null : `/api/v1/todos?page=${body.page + 1}`
+  const {prev, next, total, results} = await todoService.fetchTodos(body)
 
   return res.json({
     prev,
@@ -85,15 +60,19 @@ export const fetchTodo = async (
   const { success, error } = handleBodyValidation(fetchSingleBodySchema, body)
 
   if (!success) {
-    return res.json(error.format())
+    return res.status(400).json(error.format())
   }
 
-  const todoRes = await db
-    .select()
-    .from(todos)
-    .where(eq(todos.id, body.id))
+  const todoRes = await todoService.fetchTodo(body.id)
 
-  return res.json(todoRes[0])
+  if (todoRes) {
+    return res.json(todoRes)
+  } else {
+    return res.status(404).json({
+      message: "Not found",
+      code: "todo_not_found"
+    })
+  }
 }
 
 export const updateTodo = async (
@@ -113,22 +92,19 @@ export const updateTodo = async (
   const { success, error } = handleBodyValidation(patchTodoBodySchema, body)
 
   if (!success) {
-    return res.json(error.format())
+    return res.status(400).json(error.format())
   }
 
-  const todoRes = await db
-    .select()
-    .from(todos)
-    .where(eq(todos.id, id))
+  const updatedTodo = await todoService.updateTodo({ id, name, description, completed })
 
-  const updatedTodo = {
-    ...todoRes[0],
-    name: name ?? todoRes[0].name,
-    description: description ?? todoRes[0].description,
-    completed: completed ?? todoRes[0].completed
+  if (updatedTodo) {
+    return res.json(updatedTodo)
+  } else {
+    return res.status(404).json({
+      message: "Not found",
+      code: "todo_not_found"
+    })
   }
-
-  return res.json(updatedTodo)
 }
 
 export const deleteTodo = async (
@@ -144,15 +120,19 @@ export const deleteTodo = async (
   const { success, error } = handleBodyValidation(deleteBodySchema, body)
 
   if (!success) {
-    return res.json(error.format())
+    return res.status(400).json(error.format())
   }
 
-  const todoRes = await db
-    .select()
-    .from(todos)
-    .where(eq(todos.id, body.id))
+  const todoRes = await todoService.deleteTodo(id)
 
-  return res.json(todoRes[0])
+  if (todoRes) {
+    return res.json(todoRes)
+  } else {
+    return res.status(404).json({
+      message: "Not found",
+      code: "todo_not_found"
+    })
+  }
 }
 
 export const createTodo = async (
@@ -169,17 +149,10 @@ export const createTodo = async (
   const { success, error } = handleBodyValidation(addTodoBodySchema, body)
 
   if (!success) {
-    return res.json(error.format())
+    return res.status(400).json(error.format())
   }
 
-  const newTodo: Todo = {
-    id: crypto.randomUUID(),
-    name,
-    description,
-    completed: 0,
-    created_at: new Date(),
-    updated_at: new Date()
-  }
+  const newTodo = await todoService.createTodo({name, description})
 
-  return res.json(newTodo)
+  return res.status(201).json(newTodo)
 }

@@ -1,13 +1,13 @@
 import { Request, Response } from 'express'
-import { ColumnMap, withParam, users, db, count, eq } from '../../libs/db'
 
 import { handleBodyValidation } from '../../libs/utils'
 
 import type { FetchAllRequestQuery, FetchSingleRequestParams, FetchSingleBody, PatchRequestParams } from '../types'
 import { fetchAllBodySchema, fetchSingleBodySchema, deleteBodySchema } from '../../libs/validation/schema/general'
 import { FetchAllBody, DeleteRequestParams, DeleteBody } from '../types'
-import { PatchRequestBody, PostRequestBody, User } from './types'
+import { PatchRequestBody, PostRequestBody } from './types'
 import { addUserBodySchema, patchUserBodySchema } from '../../libs/validation/schema/users'
+import usersService from '../../services/users'
 
 export const fetchUsers = async (
   req: Request<{}, {}, {}, FetchAllRequestQuery>,
@@ -28,35 +28,7 @@ export const fetchUsers = async (
     return res.json(error.format())
   }
 
-  const offset = (body.page - 1) * body.per_page
-
-  // todo: move it to one query
-  const countResult = await db.select({ count: count() }).from(users)
-
-  const queryBuild = db
-    .select()
-    .from(users)
-    .limit(body.limit || body.per_page || -1)
-    .offset(offset)
-    .$dynamic()
-
-  const columnMap: ColumnMap = {
-    name: users.name,
-    email: users.email,
-    created_at: users.created_at,
-    city: users.city,
-    street: users.street,
-    zipcode: users.zipcode,
-  }
-
-  const total = countResult[0].count
-  const totalPages = Math.ceil(total / body.per_page)
-
-  const results = await withParam(queryBuild, order as string, columnMap)
-
-  const prev = body.page === 1 ? null : `/api/v1/users?page=${body.page - 1}`
-  const next =
-    body.page + 1 > totalPages ? null : `/api/v1/users?page=${body.page + 1}`
+  const {prev, next, total, results} = await usersService.fetchUsers(body) 
 
   return res.json({
     prev,
@@ -82,12 +54,16 @@ export const fetchUser = async (
     return res.json(error.format())
   }
 
-  const todoRes = await db
-    .select()
-    .from(users)
-    .where(eq(users.id, body.id))
+  const userRes = await usersService.fetchUser(id)
 
-  return res.json(todoRes[0])
+  if (userRes) {
+      return res.json(userRes)
+  } else {
+    return res.status(404).json({
+      message: "Not found",
+      code: "user_not_found"
+    })
+  }
 }
 
 export const deleteUser = async (
@@ -106,12 +82,16 @@ export const deleteUser = async (
     return res.json(error.format())
   }
 
-  const todoRes = await db
-    .select()
-    .from(users)
-    .where(eq(users.id, body.id))
+  const userRes = await usersService.fetchUser(id)
 
-  return res.json(todoRes[0])
+  if (userRes) {
+    return res.json(userRes)
+  } else {
+    return res.status(404).json({
+      message: "Not found",
+      code: "user_not_found"
+    })
+  }
 }
 
 export const createUser = async (
@@ -131,21 +111,9 @@ export const createUser = async (
     return res.json(error.format())
   }
 
-  const newUser: User = {
-    id: crypto.randomUUID(),
-    email,
-    password,
-    created_at: new Date(),
-    updated_at: new Date(),
-    number: null,
-    name: null,
-    phone: null,
-    city: null,
-    street: null,
-    zipcode: null
-  }
+  const newUser = usersService.createUser({email, password})
 
-  return res.json(newUser)
+  return res.status(201).json(newUser)
 }
 
 export const updateUser = async (
@@ -171,20 +139,14 @@ export const updateUser = async (
     return res.json(error.format())
   }
 
-  const userRes = await db
-    .select()
-    .from(users)
-    .where(eq(users.id, id))
+  const updatedUser = await usersService.updateUser(body)
 
-  const updatedTodo = {
-    ...userRes[0],
-    name: name ?? userRes[0].name,
-    phone: phone ?? userRes[0].phone,
-    city: city ?? userRes[0].city,
-    street: street ?? userRes[0].street,
-    number: number ?? userRes[0].number,
-    zipcode: zipcode ?? userRes[0].zipcode,
+  if (updatedUser) {
+    return res.json(updatedUser)
+  } else {
+    return res.status(404).json({
+      message: "Not found",
+      code: "user_not_found"
+    })
   }
-
-  return res.json(updatedTodo)
 }

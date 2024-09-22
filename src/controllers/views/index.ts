@@ -1,1 +1,1 @@
-export * from './views'
+export { default } from './views'

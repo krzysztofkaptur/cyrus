@@ -1,158 +1,168 @@
 import { Request, Response } from 'express'
 
-import todoService from '../../services/todos'
+import TodosService from '../../services/todos'
 
-import type {
-  PatchRequestBody,
-  PostRequestBody,
-} from './types'
+import { PatchRequestBody, PostRequestBody } from './types'
 
-import type { FetchAllRequestQuery, PatchRequestParams, DeleteRequestParams } from '../types'
-import type { FetchAllBody, FetchSingleRequestParams, FetchSingleBody, DeleteBody } from '../types'
+import {
+  FetchAllRequestQuery,
+  PatchRequestParams,
+  DeleteRequestParams
+} from '../types'
+import {
+  FetchAllBody,
+  FetchSingleRequestParams,
+  FetchSingleBody,
+  DeleteBody
+} from '../types'
 
 import {
   patchTodoBodySchema,
   addTodoBodySchema
 } from '../../libs/validation/schema/todos'
-import { fetchAllBodySchema, fetchSingleBodySchema, deleteBodySchema } from '../../libs/validation/schema/general'
+import {
+  fetchAllBodySchema,
+  fetchSingleBodySchema,
+  deleteBodySchema
+} from '../../libs/validation/schema/general'
 
 import { handleBodyValidation } from '../../libs/utils'
 
-export const fetchTodos = async (
-  req: Request<{}, {}, {}, FetchAllRequestQuery>,
-  res: Response
-) => {
-  const { limit, order, page = '1', per_page = '10' } = req.query
+class TodosController {
+  async fetchAll(
+    req: Request<unknown, unknown, unknown, FetchAllRequestQuery>,
+    res: Response
+  ) {
+    const { limit, order, page = '1', per_page = '10' } = req.query
 
-  const body: FetchAllBody = {
-    limit: +limit || undefined,
-    order,
-    page: +page,
-    per_page: +per_page
-  }
+    const body: FetchAllBody = {
+      limit: +limit || undefined,
+      order,
+      page: +page,
+      per_page: +per_page
+    }
 
-  const { success, error } = handleBodyValidation(fetchAllBodySchema, body)
+    const { success, error } = handleBodyValidation(fetchAllBodySchema, body)
 
-  if (!success) {
-    return res.status(400).json(error.format())
-  }
+    if (!success) {
+      return res.status(400).json(error.format())
+    }
 
-  const {prev, next, total, results} = await todoService.fetchTodos(body)
+    const { prev, next, total, results } = await TodosService.fetchAll(body)
 
-  return res.json({
-    prev,
-    next,
-    total,
-    results
-  })
-}
-
-export const fetchTodo = async (
-  req: Request<FetchSingleRequestParams>,
-  res: Response
-) => {
-  const { id } = req.params
-
-  const body: FetchSingleBody = {
-    id
-  }
-
-  const { success, error } = handleBodyValidation(fetchSingleBodySchema, body)
-
-  if (!success) {
-    return res.status(400).json(error.format())
-  }
-
-  const todoRes = await todoService.fetchTodo(body.id)
-
-  if (todoRes) {
-    return res.json(todoRes)
-  } else {
-    return res.status(404).json({
-      message: "Not found",
-      code: "todo_not_found"
+    return res.json({
+      prev,
+      next,
+      total,
+      results
     })
   }
-}
 
-export const updateTodo = async (
-  req: Request<PatchRequestParams, {}, PatchRequestBody, {}>,
-  res: Response
-) => {
-  const { id } = req.params
-  const { name, description, completed } = req.body
+  async fetchById(req: Request<FetchSingleRequestParams>, res: Response) {
+    const { id } = req.params
 
-  const body: PatchRequestBody = {
-    id,
-    name,
-    description,
-    completed
+    const body: FetchSingleBody = {
+      id
+    }
+
+    const { success, error } = handleBodyValidation(fetchSingleBodySchema, body)
+
+    if (!success) {
+      return res.status(400).json(error.format())
+    }
+
+    const todoRes = await TodosService.fetchById(body.id)
+
+    if (todoRes) {
+      return res.json(todoRes)
+    } else {
+      return res.status(404).json({
+        message: 'Not found',
+        code: 'todo_not_found'
+      })
+    }
   }
 
-  const { success, error } = handleBodyValidation(patchTodoBodySchema, body)
+  async update(
+    req: Request<PatchRequestParams, unknown, PatchRequestBody, unknown>,
+    res: Response
+  ) {
+    const { id } = req.params
+    const { name, description, completed } = req.body
 
-  if (!success) {
-    return res.status(400).json(error.format())
-  }
+    const body: PatchRequestBody = {
+      id,
+      name,
+      description,
+      completed
+    }
 
-  const updatedTodo = await todoService.updateTodo({ id, name, description, completed })
+    const { success, error } = handleBodyValidation(patchTodoBodySchema, body)
 
-  if (updatedTodo) {
-    return res.json(updatedTodo)
-  } else {
-    return res.status(404).json({
-      message: "Not found",
-      code: "todo_not_found"
+    if (!success) {
+      return res.status(400).json(error.format())
+    }
+
+    const updatedTodo = await TodosService.update({
+      id,
+      name,
+      description,
+      completed
     })
+
+    if (updatedTodo) {
+      return res.json(updatedTodo)
+    } else {
+      return res.status(404).json({
+        message: 'Not found',
+        code: 'todo_not_found'
+      })
+    }
+  }
+
+  async delete(req: Request<DeleteRequestParams>, res: Response) {
+    const { id } = req.params
+
+    const body: DeleteBody = {
+      id
+    }
+
+    const { success, error } = handleBodyValidation(deleteBodySchema, body)
+
+    if (!success) {
+      return res.status(400).json(error.format())
+    }
+
+    const todoRes = await TodosService.delete(id)
+
+    if (todoRes) {
+      return res.json(todoRes)
+    } else {
+      return res.status(404).json({
+        message: 'Not found',
+        code: 'todo_not_found'
+      })
+    }
+  }
+
+  async create(req: Request<unknown, unknown, PostRequestBody>, res: Response) {
+    const { name, description } = req.body
+
+    const body: PostRequestBody = {
+      name,
+      description
+    }
+
+    const { success, error } = handleBodyValidation(addTodoBodySchema, body)
+
+    if (!success) {
+      return res.status(400).json(error.format())
+    }
+
+    const newTodo = await TodosService.create({ name, description })
+
+    return res.status(201).json(newTodo)
   }
 }
 
-export const deleteTodo = async (
-  req: Request<DeleteRequestParams>,
-  res: Response
-) => {
-  const { id } = req.params
-
-  const body: DeleteBody = {
-    id
-  }
-
-  const { success, error } = handleBodyValidation(deleteBodySchema, body)
-
-  if (!success) {
-    return res.status(400).json(error.format())
-  }
-
-  const todoRes = await todoService.deleteTodo(id)
-
-  if (todoRes) {
-    return res.json(todoRes)
-  } else {
-    return res.status(404).json({
-      message: "Not found",
-      code: "todo_not_found"
-    })
-  }
-}
-
-export const createTodo = async (
-  req: Request<{}, {}, PostRequestBody>,
-  res: Response
-) => {
-  const { name, description } = req.body
-
-  const body: PostRequestBody = {
-    name,
-    description
-  }
-
-  const { success, error } = handleBodyValidation(addTodoBodySchema, body)
-
-  if (!success) {
-    return res.status(400).json(error.format())
-  }
-
-  const newTodo = await todoService.createTodo({name, description})
-
-  return res.status(201).json(newTodo)
-}
+export default new TodosController()

@@ -1,9 +1,9 @@
 import { Router } from 'express'
-import { renderDocsPage, renderLandingPage } from '../../controllers/views'
+import ViewsController from '../../controllers/views'
 
 const viewsRouter = Router()
 
-viewsRouter.get('/', renderLandingPage)
-viewsRouter.get('/docs', renderDocsPage)
+viewsRouter.get('/', ViewsController.renderLandingPage)
+viewsRouter.get('/docs', ViewsController.renderDocsPage)
 
 export { viewsRouter }

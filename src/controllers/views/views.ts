@@ -1,10 +1,14 @@
 import { Request, Response } from 'express'
 import { todos, users } from './data'
 
-export const renderLandingPage = (req: Request, res: Response) => {
-  return res.render('pages/home', { path: '/' })
+class ViewsController {
+  renderLandingPage(_req: Request, res: Response) {
+    return res.render('pages/home', { path: '/' })
+  }
+
+  renderDocsPage(_req: Request, res: Response) {
+    return res.render('pages/docs', { todos, users, path: '/docs' })
+  }
 }
 
-export const renderDocsPage = (req: Request, res: Response) => {
-  return res.render('pages/docs', { todos, users, path: '/docs' })
-}
+export default new ViewsController()

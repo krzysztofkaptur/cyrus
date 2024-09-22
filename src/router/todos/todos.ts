@@ -1,19 +1,13 @@
 import { Router } from 'express'
 
-import {
-  createTodo,
-  deleteTodo,
-  fetchTodo,
-  fetchTodos,
-  updateTodo
-} from '../../controllers/todos/todos'
+import TodosController from '../../controllers/todos/todos'
 
 const todosRouter = Router()
 
-todosRouter.get('/', fetchTodos)
-todosRouter.get('/:id', fetchTodo)
-todosRouter.patch('/:id', updateTodo)
-todosRouter.delete('/:id', deleteTodo)
-todosRouter.post('/', createTodo)
+todosRouter.get('/', TodosController.fetchAll)
+todosRouter.get('/:id', TodosController.fetchById)
+todosRouter.patch('/:id', TodosController.update)
+todosRouter.delete('/:id', TodosController.delete)
+todosRouter.post('/', TodosController.create)
 
 export { todosRouter }

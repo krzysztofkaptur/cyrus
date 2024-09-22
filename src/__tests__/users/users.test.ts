@@ -1,7 +1,7 @@
 import supertest from 'supertest'
 
 import { createServer } from '../../utils/server'
-import usersService from '../../services/users'
+import UsersService from '../../services/users'
 
 const app = createServer()
 
@@ -18,7 +18,7 @@ describe('users', () => {
   })
 
   test('fetch user by id', async () => {
-    const usersRes = await usersService.fetchUsers({ page: 1, per_page: 1 })
+    const usersRes = await UsersService.fetchAll({ page: 1, per_page: 1 })
     const { id } = usersRes.results[0]
     const { body, statusCode } = await supertest(app).get(`/api/v1/users/${id}`)
 
@@ -38,7 +38,7 @@ describe('users', () => {
 
   test('update user', async () => {
     const editedName = 'edited'
-    const usersRes = await usersService.fetchUsers({ page: 1, per_page: 1 })
+    const usersRes = await UsersService.fetchAll({ page: 1, per_page: 1 })
     const { id } = usersRes.results[0]
     const { body, statusCode } = await supertest(app)
       .patch(`/api/v1/users/${id}`)
@@ -59,7 +59,7 @@ describe('users', () => {
   })
 
   test('delete user', async () => {
-    const usersRes = await usersService.fetchUsers({ page: 1, per_page: 1 })
+    const usersRes = await UsersService.fetchAll({ page: 1, per_page: 1 })
     const { id } = usersRes.results[0]
     const { body, statusCode } = await supertest(app).delete(
       `/api/v1/users/${id}`

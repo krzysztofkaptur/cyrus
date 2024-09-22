@@ -1,18 +1,12 @@
 import { Router } from 'express'
-import {
-  fetchUsers,
-  fetchUser,
-  deleteUser,
-  createUser,
-  updateUser
-} from '../../controllers/users'
+import UsersController from '../../controllers/users'
 
 const usersRouter = Router()
 
-usersRouter.get('/', fetchUsers)
-usersRouter.get('/:id', fetchUser)
-usersRouter.patch('/:id', updateUser)
-usersRouter.delete('/:id', deleteUser)
-usersRouter.post('/', createUser)
+usersRouter.get('/', UsersController.fetchAll)
+usersRouter.get('/:id', UsersController.fetchById)
+usersRouter.patch('/:id', UsersController.update)
+usersRouter.delete('/:id', UsersController.delete)
+usersRouter.post('/', UsersController.create)
 
 export { usersRouter }

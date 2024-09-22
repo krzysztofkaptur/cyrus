@@ -1,7 +1,7 @@
 import supertest from 'supertest'
 
 import { createServer } from '../../utils/server'
-import todosService from '../../services/todos'
+import TodosService from '../../services/todos'
 
 const app = createServer()
 
@@ -19,7 +19,7 @@ describe('todos', () => {
   })
 
   test('fetch todo by id', async () => {
-    const todosRes = await todosService.fetchTodos({ page: 1, per_page: 1 })
+    const todosRes = await TodosService.fetchAll({ page: 1, per_page: 1 })
     const { id } = todosRes.results[0]
     const { body, statusCode } = await supertest(app).get(`/api/v1/todos/${id}`)
 
@@ -37,7 +37,7 @@ describe('todos', () => {
   })
 
   test('update todo', async () => {
-    const todosRes = await todosService.fetchTodos({ page: 1, per_page: 1 })
+    const todosRes = await TodosService.fetchAll({ page: 1, per_page: 1 })
     const { id } = todosRes.results[0]
     const editedName = 'Edited'
     const { body, statusCode } = await supertest(app)
@@ -58,7 +58,7 @@ describe('todos', () => {
   })
 
   test('delete todo', async () => {
-    const todosRes = await todosService.fetchTodos({ page: 1, per_page: 1 })
+    const todosRes = await TodosService.fetchAll({ page: 1, per_page: 1 })
     const { id } = todosRes.results[0]
     const { body, statusCode } = await supertest(app).delete(
       `/api/v1/todos/${id}`
@@ -79,12 +79,10 @@ describe('todos', () => {
   test('add todo', async () => {
     const sampleName = 'new todo'
     const sampleDescription = 'new todo description'
-    const { statusCode } = await supertest(app)
-      .post('/api/v1/todos')
-      .send({
-        name: sampleName,
-        description: sampleDescription
-      })
+    const { statusCode } = await supertest(app).post('/api/v1/todos').send({
+      name: sampleName,
+      description: sampleDescription
+    })
 
     expect(statusCode).toBe(201)
   })

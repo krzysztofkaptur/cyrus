@@ -89,7 +89,7 @@ class UsersController {
       return res.json(error.format())
     }
 
-    const userRes = await UsersService.fetchById(id)
+    const userRes = await UsersService.delete(id)
 
     if (userRes) {
       return res.json(userRes)

@@ -5,8 +5,10 @@ import {
   User
 } from '../../controllers/users/types'
 import { ColumnMap, withParam, users, db, count, eq } from '../../libs/db'
+import { CrudService } from '../types'
 
-class UsersService {
+class UsersService
+  implements CrudService<User, PostRequestBody, PatchRequestBody> {
   async fetchAll({ page, per_page, limit, order }: FetchAllBody) {
     const offset = (page - 1) * per_page
 
@@ -97,6 +99,16 @@ class UsersService {
     }
 
     return updatedTodo
+  }
+
+  async delete(id: string) {
+    const userRes = await this.fetchById(id)
+
+    if (!userRes) {
+      return null
+    }
+
+    return userRes
   }
 }
 

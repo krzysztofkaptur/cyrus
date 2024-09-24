@@ -5,10 +5,14 @@ import {
 } from '../../controllers/todos/types'
 import { FetchAllBody } from '../../controllers/types'
 import { eq, ColumnMap, withParam, todos, db, count } from '../../libs/db'
+import type { CrudService } from '../types'
 
-class TodosService {
+class TodosService implements CrudService<Todo, PostRequestBody, PatchRequestBody> {
   async fetchById(id: string) {
-    const todoRes = await db.select().from(todos).where(eq(todos.id, id))
+    const todoRes = await db
+      .select()
+      .from(todos)
+      .where(eq(todos.id, id))
 
     return todoRes[0]
   }
@@ -72,7 +76,7 @@ class TodosService {
       return null
     }
 
-    const updatedTodo = {
+    const updatedTodo: Todo = {
       ...todoRes,
       name: name ?? todoRes.name,
       description: description ?? todoRes.description,

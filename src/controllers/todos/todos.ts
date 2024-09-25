@@ -27,6 +27,7 @@ import {
 } from '../../libs/validation/schema/general'
 
 import { handleBodyValidation } from '../../libs/utils'
+import { msgCodes } from '../../config/default'
 
 class TodosController {
   async fetchAll(
@@ -78,7 +79,7 @@ class TodosController {
     } else {
       return res.status(404).json({
         message: 'Not found',
-        code: 'todo_not_found'
+        code: msgCodes.todoNotFound
       })
     }
   }
@@ -115,7 +116,7 @@ class TodosController {
     } else {
       return res.status(404).json({
         message: 'Not found',
-        code: 'todo_not_found'
+        code: msgCodes.todoNotFound
       })
     }
   }
@@ -140,7 +141,7 @@ class TodosController {
     } else {
       return res.status(404).json({
         message: 'Not found',
-        code: 'todo_not_found'
+        code: msgCodes.todoNotFound
       })
     }
   }

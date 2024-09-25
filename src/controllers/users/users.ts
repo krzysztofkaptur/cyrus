@@ -20,6 +20,7 @@ import {
   patchUserBodySchema
 } from '../../libs/validation/schema/users'
 import UsersService from '../../services/users'
+import { msgCodes } from '../../config/default'
 
 class UsersController {
   async fetchAll(
@@ -71,7 +72,7 @@ class UsersController {
     } else {
       return res.status(404).json({
         message: 'Not found',
-        code: 'user_not_found'
+        code: msgCodes.userNotFound
       })
     }
   }
@@ -96,7 +97,7 @@ class UsersController {
     } else {
       return res.status(404).json({
         message: 'Not found',
-        code: 'user_not_found'
+        code: msgCodes.userNotFound
       })
     }
   }
@@ -150,7 +151,7 @@ class UsersController {
     } else {
       return res.status(404).json({
         message: 'Not found',
-        code: 'user_not_found'
+        code: msgCodes.userNotFound
       })
     }
   }

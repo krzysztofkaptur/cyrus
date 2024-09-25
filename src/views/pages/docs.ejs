@@ -17,13 +17,17 @@
           <h2 id="todos" class="text-3xl text-accent font-semibold">Todos</h2>
           <div class="flex flex-col gap-16 py-8">
             <% todos.forEach(function(todo){ %>
-              <article>
-                <div>
+              <article class="flex flex-col gap-4 items-start">
+                <div class="w-full">
                   <header>
                     <h3 id="<%= todo.id %>" class="text-lg font-semibold"><%= todo.title %></h3>
                   </header>
-                  <pre>
-                    <code class="bg-secondary text-white block rounded-lg text-sm lg:text-base max-w-[calc(100vw-3.25rem)] overflow-auto pr-4">
+                  <pre class="flex flex-col">
+                    <div class="flex bg-secondary text-white justify-between rounded-t-lg  px-4 py-2 text-sm">
+                      <span>Javascript</span>
+                      <button class="cursor-pointer" data-copy-code>copy</button>
+                    </div>
+                    <code class="bg-secondary text-white block rounded-b-lg text-sm lg:text-base max-w-[calc(100vw-3.25rem)] overflow-auto pr-4">
                       <%= todo.code %>
                     </code>
                   </pre>
@@ -47,13 +51,17 @@
           <h2 id="users" class="text-3xl text-accent font-semibold">Users</h2>
           <div class="flex flex-col gap-16 py-8">
             <% users.forEach(function(user){ %>
-              <article>
-                <div>
+              <article class="flex flex-col gap-4 items-start">
+                <div class="w-full">
                   <header>
                     <h3 id="<%= user.id %>" class="text-lg font-semibold"><%= user.title %></h3>
                   </header>
-                  <pre>
-                    <code class="bg-secondary text-white block rounded-lg text-sm lg:text-base max-w-[calc(100vw-3.25rem)] overflow-auto pr-4">
+                  <pre class="flex flex-col">
+                    <div class="flex bg-secondary text-white justify-between rounded-t-lg  px-4 py-2 text-sm">
+                      <span>Javascript</span>
+                      <button class="cursor-pointer" data-copy-code>copy</button>
+                    </div>
+                    <code class="bg-secondary text-white block rounded-b-lg text-sm lg:text-base max-w-[calc(100vw-3.25rem)] overflow-auto pr-4">
                       <%= user.code %>
                     </code>
                   </pre>
@@ -80,6 +88,7 @@
 
   <script>
     const buttons = document.querySelectorAll('[data-show-response]')
+    const copyBtns = document.querySelectorAll('[data-copy-code]')
 
     buttons.forEach((button) => {
       button.addEventListener('click', () => {
@@ -93,6 +102,14 @@
           responseSection.classList.add('hidden')
           button.textContent = 'Show response'
         }
+      })
+    })
+
+    copyBtns.forEach((button) => {
+      button.addEventListener('click', (e) => {
+        // todo: move it to external file and test it
+        const textToCopy = e.target.parentElement.nextElementSibling.innerText
+        navigator.clipboard.writeText(textToCopy)
       })
     })
   </script>

@@ -20,7 +20,6 @@ class TodosService implements CrudService<Todo, PostRequestBody, PatchRequestBod
   async fetchAll({ limit, per_page, page, order }: FetchAllBody) {
     const offset = (page - 1) * per_page
 
-    // todo: move it to one query
     const countResult = await db
       .select({
         count: count()

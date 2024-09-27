@@ -635,12 +635,16 @@ video {
   max-width: 80rem;
 }
 
-.max-w-\[calc\(100vw-3\.25rem\)\] {
-  max-width: calc(100vw - 3.25rem);
+.max-w-\[calc\(100vw-3\.05rem\)\] {
+  max-width: calc(100vw - 3.05rem);
 }
 
 .max-w-xl {
   max-width: 36rem;
+}
+
+.max-w-\[calc\(100vw-2rem\)\] {
+  max-width: calc(100vw - 2rem);
 }
 
 .flex-1 {
@@ -764,10 +768,6 @@ video {
 
 .p-2 {
   padding: 0.5rem;
-}
-
-.p-4 {
-  padding: 1rem;
 }
 
 .px-4 {

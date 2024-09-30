@@ -1,0 +1,1 @@
+export { testimonialsRouter } from './testimonials'

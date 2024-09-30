@@ -4,6 +4,7 @@ import Database from 'better-sqlite3'
 import { todos, users } from '../schemas'
 import { seedTodos } from './todos'
 import { seedUsers } from './users'
+import { seedTestimonials } from './testimonials'
 
 const sqlite = new Database('sqlite.db')
 const db = drizzle(sqlite)
@@ -17,6 +18,7 @@ async function main() {
 
   await seedTodos(db)
   await seedUsers(db)
+  await seedTestimonials(db)
 
   console.log('seending completed')
 }

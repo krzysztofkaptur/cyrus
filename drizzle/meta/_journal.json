@@ -15,6 +15,20 @@
       "when": 1727727660673,
       "tag": "0001_curious_krista_starr",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "6",
+      "when": 1727730791886,
+      "tag": "0002_rare_mentor",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "6",
+      "when": 1727731120701,
+      "tag": "0003_lethal_human_cannonball",
+      "breakpoints": true
     }
   ]
 }

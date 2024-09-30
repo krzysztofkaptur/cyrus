@@ -20,7 +20,8 @@ export default defineConfig({
         text: 'Resources',
         items: [
           { text: 'Todos', link: '/guide/todos', },
-          { text: 'Users', link: '/guide/users', }
+          { text: 'Users', link: '/guide/users', },
+          { text: 'Testimonials', link: '/guide/testimonials', }
         ]
       }
     ],

@@ -1,0 +1,1 @@
+ALTER TABLE `testimonials` RENAME COLUMN `test` TO `text`;

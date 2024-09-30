@@ -26,6 +26,10 @@ export const patchUserBodySchema = z.object({
   zipcode: z
     .string()
     .max(10)
+    .optional(),
+  avatar: z
+    .string()
+    .max(256)
     .optional()
 })
 

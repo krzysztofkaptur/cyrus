@@ -68,7 +68,8 @@ class UsersService
       phone: null,
       city: null,
       street: null,
-      zipcode: null
+      zipcode: null,
+      avatar: null
     }
 
     return newUser

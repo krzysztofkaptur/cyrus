@@ -16,7 +16,8 @@ export async function seedUsers(db: BetterSQLite3Database) {
       city: faker.location.city(),
       street: faker.location.street(),
       number: faker.location.buildingNumber(),
-      zipcode: faker.location.zipCode()
+      zipcode: faker.location.zipCode(),
+      avatar: faker.image.avatarGitHub()
     })
   }
 }

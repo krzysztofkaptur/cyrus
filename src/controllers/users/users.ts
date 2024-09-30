@@ -126,7 +126,7 @@ class UsersController {
     res: Response
   ) {
     const { id } = req.params
-    const { name, phone, city, street, number, zipcode } = req.body
+    const { name, phone, city, street, number, zipcode, avatar } = req.body
 
     const body: PatchRequestBody = {
       id,
@@ -135,7 +135,8 @@ class UsersController {
       city,
       street,
       number,
-      zipcode
+      zipcode,
+      avatar
     }
 
     const { success, error } = handleBodyValidation(patchUserBodySchema, body)

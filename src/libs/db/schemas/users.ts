@@ -21,7 +21,8 @@ export const users = sqliteTable(
     city: text('city', { length: 50 }),
     street: text('street', { length: 100 }),
     number: text('number', { length: 10 }),
-    zipcode: text('zipcode', { length: 10 })
+    zipcode: text('zipcode', { length: 10 }),
+    avatar: text('avatar', { length: 256 })
   },
   table => ({
     emailUniqueIndex: uniqueIndex('emailUniqueIndex').on(

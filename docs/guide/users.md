@@ -35,7 +35,8 @@ fetch('{{baseUrl}}/api/v1/users')
       "city": "Halvorsoncester",
       "street": "The Green",
       "number": "6463",
-      "zipcode": "44814"
+      "zipcode": "44814",
+      "avatar": "https://avatars.githubusercontent.com/u/5834037",
     },
     ...
   ]
@@ -73,7 +74,8 @@ fetch('{{baseUrl}}/api/v1/users?limit=3')
       "city": "Halvorsoncester",
       "street": "The Green",
       "number": "6463",
-      "zipcode": "44814"
+      "zipcode": "44814",
+      "avatar": "https://avatars.githubusercontent.com/u/5834037",
     },
     {
       "id": "ca8147fa-5c32-4402-8406-3c64aa9a6b48",
@@ -86,7 +88,8 @@ fetch('{{baseUrl}}/api/v1/users?limit=3')
       "city": "West Amir",
       "street": "N Oak Street",
       "number": "2394",
-      "zipcode": "05560"
+      "zipcode": "05560",
+      "avatar": "https://avatars.githubusercontent.com/u/5834037",
     },
     {
       "id": "a80913df-ef86-4127-a932-a455785bdd67",
@@ -99,7 +102,8 @@ fetch('{{baseUrl}}/api/v1/users?limit=3')
       "city": "New Boyd",
       "street": "Virginie Place",
       "number": "288",
-      "zipcode": "06624"
+      "zipcode": "06624",
+      "avatar": "https://avatars.githubusercontent.com/u/5834037",
     }
   ]
 }
@@ -143,7 +147,8 @@ fetch('{{baseUrl}}/api/v1/users?order=-name')
       "city": "Karsonstad",
       "street": "Hansen Corner",
       "number": "14276",
-      "zipcode": "74323"
+      "zipcode": "74323",
+      "avatar": "https://avatars.githubusercontent.com/u/5834037",
     },
     {
       "id": "7481f661-73ba-4434-b870-f9b33634ca9f",
@@ -156,7 +161,8 @@ fetch('{{baseUrl}}/api/v1/users?order=-name')
       "city": "Westshire",
       "street": "W 8th Street",
       "number": "39917",
-      "zipcode": "76063-8297"
+      "zipcode": "76063-8297",
+      "avatar": "https://avatars.githubusercontent.com/u/5834037",
     },
     {
       "id": "4d5a0bdc-01e5-4116-8d35-d8b4af618d7b",
@@ -169,7 +175,8 @@ fetch('{{baseUrl}}/api/v1/users?order=-name')
       "city": "Aftonstead",
       "street": "Main Street S",
       "number": "3759",
-      "zipcode": "99710-0059"
+      "zipcode": "99710-0059",
+      "avatar": "https://avatars.githubusercontent.com/u/5834037",
     },
     ...
   ]
@@ -207,7 +214,8 @@ fetch('{{baseUrl}}/api/v1/users?per_page=3&page=2')
       "city": "Westshire",
       "street": "W 8th Street",
       "number": "39917",
-      "zipcode": "76063-8297"
+      "zipcode": "76063-8297",
+      "avatar": "https://avatars.githubusercontent.com/u/5834037",
     },
     {
       "id": "b33fef60-b114-49f2-8914-ee9f14fc9150",
@@ -220,7 +228,8 @@ fetch('{{baseUrl}}/api/v1/users?per_page=3&page=2')
       "city": "New Morris",
       "street": "Hill Street",
       "number": "4169",
-      "zipcode": "78359"
+      "zipcode": "78359",
+      "avatar": "https://avatars.githubusercontent.com/u/5834037",
     },
     {
       "id": "675e5b55-256d-461f-b19d-05a307d62ec6",
@@ -233,7 +242,8 @@ fetch('{{baseUrl}}/api/v1/users?per_page=3&page=2')
       "city": "Samantaboro",
       "street": "Garrett Lights",
       "number": "91619",
-      "zipcode": "07313-7295"
+      "zipcode": "07313-7295",
+      "avatar": "https://avatars.githubusercontent.com/u/5834037",
     }
   ]
 }
@@ -263,7 +273,8 @@ fetch('{{baseUrl}}/api/v1/users/1')
   "city": "Halvorsoncester",
   "street": "The Green",
   "number": "6463",
-  "zipcode": "44814"
+  "zipcode": "44814",
+  "avatar": "https://avatars.githubusercontent.com/u/5834037",
 }
 ```
 
@@ -297,7 +308,8 @@ fetch('{{baseUrl}}/api/v1/users', {
   "city": null,
   "street": null,
   "number": null,
-  "zipcode": null
+  "zipcode": null,
+  "avatar": "https://avatars.githubusercontent.com/u/5834037",
 }
 ```
 
@@ -330,7 +342,8 @@ fetch('{{baseUrl}}/api/v1/users/1', {
   "city": null,
   "street": null,
   "number": null,
-  "zipcode": null
+  "zipcode": null,
+  "avatar": "https://avatars.githubusercontent.com/u/5834037",
 }
 ```
 
@@ -360,7 +373,8 @@ fetch('{{baseUrl}}/api/v1/users/bd127c0b-19c1-4b38-bf7c-68cf65fb1031', {
   "city": "Halvorsoncester",
   "street": "The Green",
   "number": "6463",
-  "zipcode": "44814"
+  "zipcode": "44814",
+  "avatar": "https://avatars.githubusercontent.com/u/5834037",
 }
 ```
 

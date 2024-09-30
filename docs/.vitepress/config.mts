@@ -26,10 +26,11 @@ export default defineConfig({
     ],
 
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/krzysztofkaptur/cyrus-api' }
+      { icon: 'github', link: 'https://github.com/krzysztofkaptur/cyrus-api' },
     ],
 
     footer: {
+      message: 'Released under the <a href="https://github.com/krzysztofkaptur/cyrus-api/blob/master/LICENSE.txt" target="_blank">MIT License</a>.',
       copyright: `Copyright © ${new Date().getFullYear()} <a href="https://frontdev.me" target="_blank">Chris</a>`
     }
   }

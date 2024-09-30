@@ -1,4 +1,4 @@
-export { eq, desc, asc, count, InferSelectModel } from 'drizzle-orm'
+export { eq, desc, asc, count, InferSelectModel, sql } from 'drizzle-orm'
 
 export * from './utils'
 export * from './schemas'

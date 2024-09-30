@@ -55,6 +55,7 @@ class UsersService
     return todoRes[0]
   }
 
+  // create function without changes to DB
   async create({ email, password }: PostRequestBody) {
     const newUser: User = {
       id: crypto.randomUUID(),
@@ -73,6 +74,28 @@ class UsersService
     return newUser
   }
 
+  // create function with changes to DB
+  // async create({ email, password }: PostRequestBody) {
+  //   const newUser = await db
+  //     .insert(users)
+  //     .values({
+  //       email,
+  //       password,
+  //       created_at: new Date(),
+  //       updated_at: new Date(),
+  //       number: null,
+  //       name: null,
+  //       phone: null,
+  //       city: null,
+  //       street: null,
+  //       zipcode: null
+  //     })
+  //     .returning()
+
+  //   return newUser[0]
+  // }
+
+  // update function without changes to DB
   async update({
     id,
     name,
@@ -101,6 +124,33 @@ class UsersService
     return updatedTodo
   }
 
+  // update function with changes to DB
+  // async update({
+  //   id,
+  //   name,
+  //   phone,
+  //   city,
+  //   street,
+  //   number,
+  //   zipcode
+  // }: PatchRequestBody) {
+  //   const updatedTodo = await db
+  //     .update(users)
+  //     .set({
+  //       name,
+  //       phone,
+  //       city,
+  //       street,
+  //       number,
+  //       zipcode
+  //     })
+  //     .where(eq(users.id, id))
+  //     .returning()
+
+  //   return updatedTodo[0]
+  // }
+
+  // delete function without changes to DB
   async delete(id: string) {
     const userRes = await this.fetchById(id)
 
@@ -110,6 +160,16 @@ class UsersService
 
     return userRes
   }
+
+  // delete function with changes to DB
+  // async delete(id: string) {
+  //   const deletedUser = await db
+  //     .delete(users)
+  //     .where(eq(users.id, id))
+  //     .returning()
+
+  //   return deletedUser[0]
+  // }
 }
 
 export default new UsersService()

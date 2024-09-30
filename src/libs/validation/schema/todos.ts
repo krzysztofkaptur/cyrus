@@ -15,5 +15,5 @@ export const patchTodoBodySchema = z.object({
 
 export const addTodoBodySchema = z.object({
   name: z.string(),
-  description: z.string()
+  description: z.string().optional()
 })

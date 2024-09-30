@@ -8,5 +8,5 @@ A fake REST API ready to help you with a first steps in a new project.
 
 ## Data
 
-Todos: [https://cyrus-api.com/api/v1/todos](https://cyrus-api.com/api/v1/todos)
-Users: [https://cyrus-api.com/api/v1/todos](https://cyrus-api.com/api/v1/users)
+- Todos: [https://cyrus-api.com/api/v1/todos](https://cyrus-api.com/api/v1/todos)
+- Users: [https://cyrus-api.com/api/v1/todos](https://cyrus-api.com/api/v1/users)

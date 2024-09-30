@@ -8,4 +8,4 @@ Use provided endpoints as is, by sending a request to e.g. `https://cyrus-api.co
 
 ## Advanced
 
-Clone it and use it locally next to your project. Add missing database requests so you can use its full capabilities.
+Clone the repository from GitHub and integrate it locally alongside your project. The code for adding, updating, and deleting data (connected to a database) has been provided within comments. Simply uncomment the relevant sections to take full control of your datasets.

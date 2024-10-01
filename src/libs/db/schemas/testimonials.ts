@@ -8,5 +8,5 @@ export const testimonials = sqliteTable('testimonials', {
   updated_at: integer('updated_at', { mode: 'timestamp' }),
   name: text('name', { length: 50 }),
   avatar: text('avatar', { length: 256 }),
-  text: text('text', { length: 256 })
+  text: text('text', { length: 256 }),
 })

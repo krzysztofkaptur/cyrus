@@ -12,7 +12,7 @@ class TestimonialsController {
     const { limit } = req.query
 
     const body = {
-      limit: +limit || undefined
+      limit: +limit || undefined,
     }
 
     const { success, error } = handleBodyValidation(

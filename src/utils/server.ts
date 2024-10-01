@@ -9,7 +9,7 @@ export const createServer = () => {
 
   const limiter = rateLimit({
     windowMs: +process.env.RATE_LIMIT_TIME! || 600000,
-    limit: +process.env.RATE_LIMIT_COUNT! || 100
+    limit: +process.env.RATE_LIMIT_COUNT! || 100,
   })
 
   app.use(limiter)

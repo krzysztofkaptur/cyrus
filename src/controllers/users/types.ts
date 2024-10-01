@@ -2,7 +2,7 @@ import { users, InferSelectModel } from '../../libs/db'
 import { z } from '../../libs/validation'
 import {
   addUserBodySchema,
-  patchUserBodySchema
+  patchUserBodySchema,
 } from '../../libs/validation/schema/users'
 
 export type PostRequestBody = z.infer<typeof addUserBodySchema>

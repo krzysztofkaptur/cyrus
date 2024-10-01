@@ -2,9 +2,7 @@ import { FetchAllBody } from '../controllers/types'
 
 export interface CrudService<T, U, V> {
   fetchById: (id: string) => Promise<T>
-  fetchAll: (
-    query: FetchAllBody
-  ) => Promise<{
+  fetchAll: (query: FetchAllBody) => Promise<{
     prev: string | null
     next: string | null
     total: number

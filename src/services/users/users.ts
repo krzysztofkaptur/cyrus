@@ -2,13 +2,14 @@ import { FetchAllBody } from '../../controllers/types'
 import {
   PatchRequestBody,
   PostRequestBody,
-  User
+  User,
 } from '../../controllers/users/types'
 import { ColumnMap, withParam, users, db, count, eq } from '../../libs/db'
 import { CrudService } from '../types'
 
 class UsersService
-  implements CrudService<User, PostRequestBody, PatchRequestBody> {
+  implements CrudService<User, PostRequestBody, PatchRequestBody>
+{
   async fetchAll({ page, per_page, limit, order }: FetchAllBody) {
     const offset = (page - 1) * per_page
 
@@ -27,7 +28,7 @@ class UsersService
       created_at: users.created_at,
       city: users.city,
       street: users.street,
-      zipcode: users.zipcode
+      zipcode: users.zipcode,
     }
 
     const total = countResult[0].count
@@ -42,15 +43,12 @@ class UsersService
       prev,
       next,
       total,
-      results
+      results,
     }
   }
 
   async fetchById(id: string) {
-    const todoRes = await db
-      .select()
-      .from(users)
-      .where(eq(users.id, id))
+    const todoRes = await db.select().from(users).where(eq(users.id, id))
 
     return todoRes[0]
   }
@@ -69,7 +67,7 @@ class UsersService
       city: null,
       street: null,
       zipcode: null,
-      avatar: null
+      avatar: null,
     }
 
     return newUser
@@ -104,7 +102,7 @@ class UsersService
     city,
     street,
     number,
-    zipcode
+    zipcode,
   }: PatchRequestBody) {
     const userRes = await this.fetchById(id)
 
@@ -119,7 +117,7 @@ class UsersService
       city: city ?? userRes?.city,
       street: street ?? userRes?.street,
       number: number ?? userRes?.number,
-      zipcode: zipcode ?? userRes?.zipcode
+      zipcode: zipcode ?? userRes?.zipcode,
     }
 
     return updatedTodo

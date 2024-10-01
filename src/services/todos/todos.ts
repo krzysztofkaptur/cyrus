@@ -1,19 +1,17 @@
 import {
   PatchRequestBody,
   PostRequestBody,
-  Todo
+  Todo,
 } from '../../controllers/todos/types'
 import { FetchAllBody } from '../../controllers/types'
 import { eq, ColumnMap, withParam, todos, db, count } from '../../libs/db'
 import { CrudService } from '../types'
 
 class TodosService
-  implements CrudService<Todo, PostRequestBody, PatchRequestBody> {
+  implements CrudService<Todo, PostRequestBody, PatchRequestBody>
+{
   async fetchById(id: string) {
-    const todoRes = await db
-      .select()
-      .from(todos)
-      .where(eq(todos.id, id))
+    const todoRes = await db.select().from(todos).where(eq(todos.id, id))
 
     return todoRes[0]
   }
@@ -23,7 +21,7 @@ class TodosService
 
     const countResult = await db
       .select({
-        count: count()
+        count: count(),
       })
       .from(todos)
 
@@ -37,7 +35,7 @@ class TodosService
     const columnMap: ColumnMap = {
       name: todos.name,
       completed: todos.completed,
-      created_at: todos.created_at
+      created_at: todos.created_at,
     }
 
     const total = countResult[0].count
@@ -52,7 +50,7 @@ class TodosService
       prev,
       next,
       total,
-      results
+      results,
     }
   }
 
@@ -64,7 +62,7 @@ class TodosService
       description: description || null,
       completed: 0,
       created_at: new Date(),
-      updated_at: new Date()
+      updated_at: new Date(),
     }
 
     return newTodo
@@ -98,7 +96,7 @@ class TodosService
       ...todoRes,
       name: name ?? todoRes.name,
       description: description ?? todoRes.description,
-      completed: completed ?? todoRes.completed
+      completed: completed ?? todoRes.completed,
     }
 
     return updatedTodo

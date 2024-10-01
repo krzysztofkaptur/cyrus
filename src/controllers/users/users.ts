@@ -6,18 +6,18 @@ import type {
   FetchAllRequestQuery,
   FetchSingleRequestParams,
   FetchSingleBody,
-  PatchRequestParams
+  PatchRequestParams,
 } from '../types'
 import {
   fetchAllBodySchema,
   fetchSingleBodySchema,
-  deleteBodySchema
+  deleteBodySchema,
 } from '../../libs/validation/schema/general'
 import { FetchAllBody, DeleteRequestParams, DeleteBody } from '../types'
 import { PatchRequestBody, PostRequestBody } from './types'
 import {
   addUserBodySchema,
-  patchUserBodySchema
+  patchUserBodySchema,
 } from '../../libs/validation/schema/users'
 import UsersService from '../../services/users'
 import { msgCodes } from '../../config/default'
@@ -33,7 +33,7 @@ class UsersController {
       limit: +limit || undefined,
       order,
       page: +page,
-      per_page: +per_page
+      per_page: +per_page,
     }
 
     const { success, error } = handleBodyValidation(fetchAllBodySchema, body)
@@ -48,7 +48,7 @@ class UsersController {
       prev,
       next,
       total,
-      results
+      results,
     })
   }
 
@@ -56,7 +56,7 @@ class UsersController {
     const { id } = req.params
 
     const body: FetchSingleBody = {
-      id
+      id,
     }
 
     const { success, error } = handleBodyValidation(fetchSingleBodySchema, body)
@@ -72,7 +72,7 @@ class UsersController {
     } else {
       return res.status(404).json({
         message: 'Not found',
-        code: msgCodes.userNotFound
+        code: msgCodes.userNotFound,
       })
     }
   }
@@ -81,7 +81,7 @@ class UsersController {
     const { id } = req.params
 
     const body: DeleteBody = {
-      id
+      id,
     }
 
     const { success, error } = handleBodyValidation(deleteBodySchema, body)
@@ -97,7 +97,7 @@ class UsersController {
     } else {
       return res.status(404).json({
         message: 'Not found',
-        code: msgCodes.userNotFound
+        code: msgCodes.userNotFound,
       })
     }
   }
@@ -107,7 +107,7 @@ class UsersController {
 
     const body: PostRequestBody = {
       email,
-      password
+      password,
     }
 
     const { success, error } = handleBodyValidation(addUserBodySchema, body)
@@ -136,7 +136,7 @@ class UsersController {
       street,
       number,
       zipcode,
-      avatar
+      avatar,
     }
 
     const { success, error } = handleBodyValidation(patchUserBodySchema, body)
@@ -152,7 +152,7 @@ class UsersController {
     } else {
       return res.status(404).json({
         message: 'Not found',
-        code: msgCodes.userNotFound
+        code: msgCodes.userNotFound,
       })
     }
   }

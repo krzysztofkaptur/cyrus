@@ -43,7 +43,7 @@ describe('users', () => {
     const { body, statusCode } = await supertest(app)
       .patch(`/api/v1/users/${id}`)
       .send({
-        name: editedName
+        name: editedName,
       })
 
     expect(statusCode).toBe(200)
@@ -84,7 +84,7 @@ describe('users', () => {
       .post('/api/v1/users')
       .send({
         email,
-        password
+        password,
       })
 
     expect(statusCode).toBe(201)

@@ -1,20 +1,18 @@
+"use strict";
 /** @type {import('tailwindcss').Config} */
-
-const colors = require('tailwindcss/colors')
-
 module.exports = {
-  content: ['./src/**/*.{html,js,ejs}'],
-  theme: {
-    extend: {
-      colors: {
-        primary: '#f1f1f1',
-        secondary: '#0C0C0C',
-        neutral: '#0C0C0C',
-        accent: '#ED5107',
-        link: '#0C0C0C'
-      }
-    }
-  },
-  plugins: [],
-  darkMode: 'class'
-}
+    content: ['./src/**/*.{html,js,ejs}'],
+    theme: {
+        extend: {
+            colors: {
+                primary: '#f1f1f1',
+                secondary: '#0C0C0C',
+                neutral: '#0C0C0C',
+                accent: '#ED5107',
+                link: '#0C0C0C',
+            },
+        },
+    },
+    plugins: [],
+    darkMode: 'class',
+};

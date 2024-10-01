@@ -1,7 +1,7 @@
 import { desc, asc } from './'
-import type { SQLiteSelect, SQLiteColumn } from 'drizzle-orm/sqlite-core';
+import type { SQLiteSelect, SQLiteColumn } from 'drizzle-orm/sqlite-core'
 
-export type ColumnMap = Record<string, SQLiteColumn>;
+export type ColumnMap = Record<string, SQLiteColumn>
 
 export function withParam<T extends SQLiteSelect>(
   qb: T,

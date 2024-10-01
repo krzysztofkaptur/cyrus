@@ -7,23 +7,23 @@ import { PatchRequestBody, PostRequestBody } from './types'
 import {
   FetchAllRequestQuery,
   PatchRequestParams,
-  DeleteRequestParams
+  DeleteRequestParams,
 } from '../types'
 import {
   FetchAllBody,
   FetchSingleRequestParams,
   FetchSingleBody,
-  DeleteBody
+  DeleteBody,
 } from '../types'
 
 import {
   patchTodoBodySchema,
-  addTodoBodySchema
+  addTodoBodySchema,
 } from '../../libs/validation/schema/todos'
 import {
   fetchAllBodySchema,
   fetchSingleBodySchema,
-  deleteBodySchema
+  deleteBodySchema,
 } from '../../libs/validation/schema/general'
 
 import { handleBodyValidation } from '../../libs/utils'
@@ -40,7 +40,7 @@ class TodosController {
       limit: +limit || undefined,
       order,
       page: +page,
-      per_page: +per_page
+      per_page: +per_page,
     }
 
     const { success, error } = handleBodyValidation(fetchAllBodySchema, body)
@@ -55,7 +55,7 @@ class TodosController {
       prev,
       next,
       total,
-      results
+      results,
     })
   }
 
@@ -63,7 +63,7 @@ class TodosController {
     const { id } = req.params
 
     const body: FetchSingleBody = {
-      id
+      id,
     }
 
     const { success, error } = handleBodyValidation(fetchSingleBodySchema, body)
@@ -79,7 +79,7 @@ class TodosController {
     } else {
       return res.status(404).json({
         message: 'Not found',
-        code: msgCodes.todoNotFound
+        code: msgCodes.todoNotFound,
       })
     }
   }
@@ -95,7 +95,7 @@ class TodosController {
       id,
       name,
       description,
-      completed
+      completed,
     }
 
     const { success, error } = handleBodyValidation(patchTodoBodySchema, body)
@@ -108,7 +108,7 @@ class TodosController {
       id,
       name,
       description,
-      completed
+      completed,
     })
 
     if (updatedTodo) {
@@ -116,7 +116,7 @@ class TodosController {
     } else {
       return res.status(404).json({
         message: 'Not found',
-        code: msgCodes.todoNotFound
+        code: msgCodes.todoNotFound,
       })
     }
   }
@@ -125,7 +125,7 @@ class TodosController {
     const { id } = req.params
 
     const body: DeleteBody = {
-      id
+      id,
     }
 
     const { success, error } = handleBodyValidation(deleteBodySchema, body)
@@ -141,7 +141,7 @@ class TodosController {
     } else {
       return res.status(404).json({
         message: 'Not found',
-        code: msgCodes.todoNotFound
+        code: msgCodes.todoNotFound,
       })
     }
   }
@@ -151,7 +151,7 @@ class TodosController {
 
     const body: PostRequestBody = {
       name,
-      description
+      description,
     }
 
     const { success, error } = handleBodyValidation(addTodoBodySchema, body)

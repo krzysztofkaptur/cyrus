@@ -2,7 +2,7 @@ import { z } from '../libs/validation'
 import {
   fetchAllBodySchema,
   fetchSingleBodySchema,
-  deleteBodySchema
+  deleteBodySchema,
 } from '../libs/validation/schema/general'
 
 export type FetchAllRequestQuery = {

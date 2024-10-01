@@ -8,7 +8,7 @@ class TestimonialsService {
       .limit(limit || -1)
 
     return {
-      results
+      results,
     }
   }
 }

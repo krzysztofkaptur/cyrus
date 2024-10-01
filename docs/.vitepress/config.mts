@@ -1,12 +1,10 @@
 import { defineConfig } from 'vitepress'
 
 export default defineConfig({
-  title: "Cyrus API",
-  description: "Fake JSON API for fast prototyping",
+  title: 'Cyrus API',
+  description: 'Fake JSON API for fast prototyping',
   themeConfig: {
-    nav: [
-      { text: 'Docs', link: '/guide/get-started' }
-    ],
+    nav: [{ text: 'Docs', link: '/guide/get-started' }],
 
     sidebar: [
       {
@@ -14,16 +12,16 @@ export default defineConfig({
         items: [
           { text: 'What is Cyrus API?', link: '/guide/what-is-cyrus-api' },
           { text: 'Get started', link: '/guide/get-started' },
-        ]
+        ],
       },
       {
         text: 'Resources',
         items: [
-          { text: 'Todos', link: '/guide/todos', },
-          { text: 'Users', link: '/guide/users', },
-          { text: 'Testimonials', link: '/guide/testimonials', }
-        ]
-      }
+          { text: 'Todos', link: '/guide/todos' },
+          { text: 'Users', link: '/guide/users' },
+          { text: 'Testimonials', link: '/guide/testimonials' },
+        ],
+      },
     ],
 
     socialLinks: [
@@ -31,8 +29,9 @@ export default defineConfig({
     ],
 
     footer: {
-      message: 'Released under the <a href="https://github.com/krzysztofkaptur/cyrus-api/blob/master/LICENSE.txt" target="_blank">MIT License</a>.',
-      copyright: `Copyright © ${new Date().getFullYear()} <a href="https://frontdev.me" target="_blank">Chris</a>`
-    }
-  }
+      message:
+        'Released under the <a href="https://github.com/krzysztofkaptur/cyrus-api/blob/master/LICENSE.txt" target="_blank">MIT License</a>.',
+      copyright: `Copyright © ${new Date().getFullYear()} <a href="https://frontdev.me" target="_blank">Chris</a>`,
+    },
+  },
 })

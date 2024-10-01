@@ -81,7 +81,7 @@ describe('todos', () => {
     const sampleDescription = 'new todo description'
     const { statusCode } = await supertest(app).post('/api/v1/todos').send({
       name: sampleName,
-      description: sampleDescription
+      description: sampleDescription,
     })
 
     expect(statusCode).toBe(201)

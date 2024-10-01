@@ -8,5 +8,5 @@ export const todos = sqliteTable('todos', {
   updated_at: integer('updated_at', { mode: 'timestamp' }),
   name: text('name', { length: 50 }).notNull(),
   description: text('description', { length: 256 }),
-  completed: integer('completed')
+  completed: integer('completed'),
 })

@@ -2,12 +2,7 @@ import express from 'express'
 import { rateLimit } from 'express-rate-limit'
 import 'dotenv/config'
 
-import {
-  todosRouter,
-  viewsRouter,
-  usersRouter,
-  testimonialsRouter
-} from '../router'
+import { todosRouter, usersRouter, testimonialsRouter } from '../router'
 
 export const createServer = () => {
   const app = express()
@@ -19,12 +14,9 @@ export const createServer = () => {
 
   app.use(limiter)
 
-  app.set('views', './src/views')
-  app.set('view engine', 'ejs')
   app.use(express.static('public'))
 
   app.use(express.json())
-  app.use('/', viewsRouter)
   app.use('/api/v1/todos', todosRouter)
   app.use('/api/v1/users', usersRouter)
   app.use('/api/v1/testimonials', testimonialsRouter)

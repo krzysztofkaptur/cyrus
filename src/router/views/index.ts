@@ -1,1 +1,0 @@
-export { viewsRouter } from './views'

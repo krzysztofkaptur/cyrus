@@ -15,8 +15,6 @@ jobs:
           username: ${{secrets.USERNAME}}
           key: ${{secrets.SSH_PRIVATE_KEY}}
           port: 22
-      - name: Pull from github
-        run: git pull origin master
       - name: Install dependencies
         run: npm install
       - name: Build 

@@ -15,13 +15,9 @@ jobs:
           username: ${{secrets.USERNAME}}
           key: ${{secrets.SSH_PRIVATE_KEY}}
           port: 22
-      - name: Checkout code
-        uses: actions/checkout@v4
-      - name: Test
-        run: git pull https://${GITHUB_ACTOR}:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git master
-      # - name: Install dependencies
-      #   run: npm ci
-      # - name: Build 
-      #   run: npm run build
-      # - name: Restart pm2
-      #   run: pm2 restart dist/index.js
+          script: |
+            cd ~/sites/cyrus-api
+            git pull origin master
+            git status
+            npm install
+            pm2 restart dist/index.js

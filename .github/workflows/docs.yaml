@@ -19,6 +19,6 @@ jobs:
             cd ~/sites/cyrus-api
             rm -r node_modules
             git pull origin master
-            npm install
+            npm ci omit=optional
             npm run docs:build
             pm2 restart ecosystem.config.js

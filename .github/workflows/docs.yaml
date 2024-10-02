@@ -17,8 +17,6 @@ jobs:
           port: 22
           script: |
             cd ~/sites/cyrus-api
-            rm -r node_modules
-            rm package-lock.json
             git pull origin master
             npm install
             npm run docs:build

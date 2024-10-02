@@ -5,3 +5,6 @@ dist/
 .env
 
 sqlite.db
+
+pm2-error.log
+pm2-out.log

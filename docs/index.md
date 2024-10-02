@@ -7,7 +7,7 @@ hero:
   text: 'Fake JSON API for fast prototyping'
   actions:
     - theme: brand
-      text: What is Cyrus API??
+      text: What is Cyrus API?
       link: /guide/what-is-cyrus-api
     - theme: alt
       text: Quickstart

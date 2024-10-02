@@ -21,7 +21,7 @@ export const createServer = () => {
   app.use('/api/v1/users', usersRouter)
   app.use('/api/v1/testimonials', testimonialsRouter)
   app.use('/api/v1/healthcheck', (req: Request, res: Response) => {
-    return res.json({ message: 'test test test' })
+    return res.json({ message: 'healthcheck' })
   })
 
   return app

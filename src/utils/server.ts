@@ -1,4 +1,4 @@
-import express from 'express'
+import express, { Request, Response } from 'express'
 import { rateLimit } from 'express-rate-limit'
 import 'dotenv/config'
 
@@ -20,6 +20,9 @@ export const createServer = () => {
   app.use('/api/v1/todos', todosRouter)
   app.use('/api/v1/users', usersRouter)
   app.use('/api/v1/testimonials', testimonialsRouter)
+  app.use('/api/v1/healthcheck', (req: Request, res: Response) => {
+    return res.json({ message: 'test' })
+  })
 
   return app
 }

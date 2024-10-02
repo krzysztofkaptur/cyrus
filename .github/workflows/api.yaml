@@ -20,4 +20,5 @@ jobs:
             git pull origin master
             git status
             npm install
+            npm build
             pm2 restart dist/index.js

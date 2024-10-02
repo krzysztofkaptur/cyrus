@@ -21,7 +21,8 @@
     "format": "prettier --write .",
     "lint": "eslint . ",
     "lint:fix": "eslint . --fix ",
-    "prepare": "husky"
+    "prepare": "husky",
+    "commit": "npx git-cz"
   },
   "keywords": [],
   "author": "",
@@ -34,6 +35,7 @@
     "ejs": "^3.1.10",
     "express": "^4.19.2",
     "express-rate-limit": "^7.4.0",
+    "git-cz": "^4.9.0",
     "postcss": "^8.4.44",
     "postcss-cli": "^11.0.0",
     "tailwindcss": "^3.4.10",

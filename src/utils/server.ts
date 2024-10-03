@@ -1,6 +1,7 @@
 import express, { Request, Response } from 'express'
 import { rateLimit } from 'express-rate-limit'
 import 'dotenv/config'
+import cors from 'cors'
 
 import { todosRouter, usersRouter, testimonialsRouter } from '../router'
 
@@ -12,6 +13,7 @@ export const createServer = () => {
     limit: +process.env.RATE_LIMIT_COUNT! || 100,
   })
 
+  app.use(cors())
   app.use(limiter)
 
   app.use(express.static('public'))
